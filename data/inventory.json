@@ -1,0 +1,30 @@
+{
+  "map": { "width": 10, "height": 8 },
+  "aisles": ["C1","C2","C3","C4","C5","C6","C7","C8","C9","C10"],
+  "zones": [
+    { "x": 0, "y": 1, "w": 1, "h": 6, "label": "C1",  "emoji": "", "fill": "#facc15" },
+    { "x": 1, "y": 1, "w": 1, "h": 6, "label": "C2",  "emoji": "", "fill": "#d1d5db" },
+    { "x": 2, "y": 1, "w": 1, "h": 6, "label": "C3",  "emoji": "", "fill": "#60a5fa" },
+    { "x": 3, "y": 1, "w": 1, "h": 6, "label": "C4",  "emoji": "", "fill": "#fb923c" },
+    { "x": 4, "y": 1, "w": 1, "h": 6, "label": "C5",  "emoji": "", "fill": "#facc15" },
+    { "x": 5, "y": 1, "w": 1, "h": 6, "label": "C6",  "emoji": "", "fill": "#d1d5db" },
+    { "x": 6, "y": 1, "w": 1, "h": 6, "label": "C7",  "emoji": "", "fill": "#60a5fa" },
+    { "x": 7, "y": 1, "w": 1, "h": 6, "label": "C8",  "emoji": "", "fill": "#fb923c" },
+    { "x": 8, "y": 1, "w": 1, "h": 6, "label": "C9",  "emoji": "", "fill": "#facc15" },
+    { "x": 9, "y": 1, "w": 1, "h": 6, "label": "C10", "emoji": "", "fill": "#d1d5db" }
+  ],
+  "items": [
+    { "sku": "TEST-01", "name": "Item 1",  "category": "Teste", "description": "Demo", "x": 0, "y": 1, "qty": 10, "aisle": "C1" },
+    { "sku": "TEST-02", "name": "Item 2",  "category": "Teste", "description": "Demo", "x": 1, "y": 2, "qty": 12, "aisle": "C2" },
+    { "sku": "TEST-03", "name": "Item 3",  "category": "Teste", "description": "Demo", "x": 2, "y": 3, "qty": 14, "aisle": "C3" },
+    { "sku": "TEST-04", "name": "Item 4",  "category": "Teste", "description": "Demo", "x": 3, "y": 4, "qty": 8,  "aisle": "C4" },
+    { "sku": "TEST-05", "name": "Item 5",  "category": "Teste", "description": "Demo", "x": 4, "y": 5, "qty": 20, "aisle": "C5" },
+    { "sku": "TEST-06", "name": "Item 6",  "category": "Teste", "description": "Demo", "x": 5, "y": 1, "qty": 5,  "aisle": "C6" },
+    { "sku": "TEST-07", "name": "Item 7",  "category": "Teste", "description": "Demo", "x": 6, "y": 2, "qty": 16, "aisle": "C7" },
+    { "sku": "TEST-08", "name": "Item 8",  "category": "Teste", "description": "Demo", "x": 7, "y": 3, "qty": 30, "aisle": "C8" },
+    { "sku": "TEST-09", "name": "Item 9",  "category": "Teste", "description": "Demo", "x": 8, "y": 4, "qty": 9,  "aisle": "C9" },
+    { "sku": "TEST-10", "name": "Item 10", "category": "Teste", "description": "Demo", "x": 9, "y": 5, "qty": 18, "aisle": "C10" }
+  ]
+}
+
+
