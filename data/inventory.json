@@ -9,7 +9,7 @@
     { "x": 3, "y": 2, "w": 1, "h": 4, "label": "Prateleira 5", "emoji": "📦", "fill": "#f97316" },
     { "x": 0, "y": 6, "w": 7, "h": 1, "label": "Prateleira 6", "emoji": "📦", "fill": "#ef4444" },
     { "x": 0, "y": 7, "w": 7, "h": 1, "label": "Prateleira 7", "emoji": "📦", "fill": "#3b82f6" },
-    { "x": 5, "y": 7, "w": 2, "h": 1, "label": "ENTRADA", "emoji": "", "fill": "#22c55e" }
+    { "x": 5, "y": 7, "w": 2, "h": 1, "label": "ENTRADA", "emoji": "🚪", "fill": "#22c55e" }
   ],
   "items": [
     { "sku": "PARAF-04X30", "name": "Parafuso 4x30 mm", "category": "Parafusos", "description": "Parafuso aço zincado philips", "x": 1, "y": 1, "qty": 50, "aisle": "Prateleira 1" },
