@@ -1,0 +1,25 @@
+{
+  "map": { "width": 7, "height": 8 },
+  "aisles": ["Prateleira 1","Prateleira 2","Prateleira 3","Prateleira 4","Prateleira 5","Prateleira 6","Prateleira 7"],
+  "zones": [
+    { "x": 0, "y": 1, "w": 7, "h": 1, "label": "Prateleira 1", "emoji": "📦", "fill": "#facc15" },
+    { "x": 0, "y": 2, "w": 1, "h": 4, "label": "Prateleira 2", "emoji": "📦", "fill": "#d1d5db" },
+    { "x": 1, "y": 2, "w": 1, "h": 4, "label": "Prateleira 3", "emoji": "📦", "fill": "#60a5fa" },
+    { "x": 2, "y": 2, "w": 1, "h": 4, "label": "Prateleira 4", "emoji": "📦", "fill": "#fb923c" },
+    { "x": 3, "y": 2, "w": 1, "h": 4, "label": "Prateleira 5", "emoji": "📦", "fill": "#facc15" },
+    { "x": 0, "y": 6, "w": 7, "h": 1, "label": "Prateleira 6", "emoji": "📦", "fill": "#d1d5db" },
+    { "x": 0, "y": 7, "w": 7, "h": 1, "label": "Prateleira 7", "emoji": "📦", "fill": "#60a5fa" },
+    { "x": 5, "y": 7, "w": 2, "h": 1, "label": "ENTRADA", "emoji": "", "fill": "#22c55e" }
+  ],
+  "items": [
+    { "sku": "PARAF-04X30", "name": "Parafuso 4x30 mm", "category": "Parafusos", "description": "Parafuso aço zincado philips", "x": 1, "y": 1, "qty": 50, "aisle": "Prateleira 1" },
+    { "sku": "BUCHA-06", "name": "Bucha 6 mm", "category": "Buchas", "description": "Bucha de nylon para alvenaria", "x": 0, "y": 2, "qty": 30, "aisle": "Prateleira 2" },
+    { "sku": "MART-500G", "name": "Martelo 500 g", "category": "Ferramentas", "description": "Cabo de madeira", "x": 1, "y": 2, "qty": 15, "aisle": "Prateleira 3" },
+    { "sku": "SERRA-TICO", "name": "Serra Tico-Tico", "category": "Elétricas", "description": "110V - com 2 lâminas", "x": 2, "y": 2, "qty": 8, "aisle": "Prateleira 4" },
+    { "sku": "TIN-18MM", "name": "Trena 8 m", "category": "Medição", "description": "Trava automática", "x": 3, "y": 2, "qty": 25, "aisle": "Prateleira 5" },
+    { "sku": "CHAVE-FENDAS", "name": "Jogo de Chaves de Fenda", "category": "Ferramentas", "description": "Jogo com 6 peças", "x": 2, "y": 6, "qty": 12, "aisle": "Prateleira 6" },
+    { "sku": "FITA-ISOLANTE", "name": "Fita Isolante", "category": "Elétricas", "description": "Fita isolante preta", "x": 4, "y": 7, "qty": 20, "aisle": "Prateleira 7" }
+  ]
+}
+
+

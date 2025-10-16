@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alterar Logo - Ferragem Fênix</title>
+    <style>
+      body {
+        margin: 0;
+        background: linear-gradient(135deg, #111827, #1f2937);
+        color: #facc15;
+        font-family: system-ui, -apple-system, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .container {
+        background: #1f2937;
+        padding: 40px;
+        border-radius: 16px;
+        border: 2px solid #facc15;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+      }
+      h1 {
+        margin: 0 0 20px;
+        font-size: 24px;
+        color: #facc15;
+      }
+      .form-group {
+        margin: 20px 0;
+      }
+      input[type="file"] {
+        width: 100%;
+        padding: 12px;
+        border: 2px dashed #facc15;
+        border-radius: 8px;
+        background: #374151;
+        color: #facc15;
+        font-size: 16px;
+      }
+      button {
+        background: #facc15;
+        color: #111;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 10px;
+        transition: all 0.3s;
+      }
+      button:hover {
+        background: #f59e0b;
+        transform: translateY(-2px);
+      }
+      .back-btn {
+        background: #374151;
+        color: #facc15;
+        border: 2px solid #facc15;
+      }
+      .back-btn:hover {
+        background: #4b5563;
+      }
+      .flash-messages {
+        margin: 20px 0;
+      }
+      .flash {
+        padding: 12px;
+        border-radius: 8px;
+        margin: 10px 0;
+        font-weight: bold;
+      }
+      .flash.success {
+        background: #10b981;
+        color: white;
+      }
+      .flash.error {
+        background: #ef4444;
+        color: white;
+      }
+      .preview {
+        margin: 20px 0;
+        padding: 20px;
+        border: 2px solid #facc15;
+        border-radius: 8px;
+        background: #374151;
+      }
+      .preview img {
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 50%;
+        border: 2px solid #facc15;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🏪 Alterar Logo - Ferragem Fênix</h1>
+      
+      <!-- Mensagens flash -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-messages">
+            {% for category, message in messages %}
+              <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      
+      <!-- Preview do logo atual -->
+      <div class="preview">
+        <h3>Logo Atual:</h3>
+        {% if logo_url %}
+          <img src="{{ logo_url }}" alt="Logo atual" />
+          <p>Logo personalizado ativo</p>
+        {% else %}
+          <div style="width:100px;height:100px;border-radius:50%;background:#facc15;color:#111;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:24px;margin:0 auto;">FF</div>
+          <p>Usando logo padrão "FF"</p>
+        {% endif %}
+      </div>
+      
+      <!-- Formulário de upload -->
+      <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="logo" style="display:block;margin-bottom:10px;font-size:18px;">
+            📁 Escolher Nova Imagem:
+          </label>
+          <input type="file" id="logo" name="logo" accept="image/*" required />
+        </div>
+        
+        <div style="margin: 20px 0;">
+          <button type="submit">✅ Atualizar Logo</button>
+          <a href="/" class="back-btn" style="text-decoration:none;display:inline-block;">🏠 Voltar ao Mapa</a>
+        </div>
+      </form>
+      
+      <!-- Instruções -->
+      <div style="margin-top: 30px; padding: 20px; background: #374151; border-radius: 8px; text-align: left;">
+        <h3 style="margin-top: 0; color: #facc15;">📋 Instruções:</h3>
+        <ul style="color: #e5e7eb; line-height: 1.6;">
+          <li><strong>Formatos aceitos:</strong> PNG, JPG, JPEG, GIF, SVG</li>
+          <li><strong>Tamanho recomendado:</strong> 200x200 pixels ou maior</li>
+          <li><strong>Formato ideal:</strong> Quadrado (1:1) para melhor visualização</li>
+          <li><strong>Peso máximo:</strong> 5MB</li>
+        </ul>
+      </div>
+    </div>
+    
+    <script>
+      // Preview da imagem selecionada
+      document.getElementById('logo').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const preview = document.querySelector('.preview');
+            preview.innerHTML = `
+              <h3>Prévia do Novo Logo:</h3>
+              <img src="${e.target.result}" alt="Preview" style="max-width:100px;max-height:100px;border-radius:50%;border:2px solid #facc15;" />
+              <p>Clique em "Atualizar Logo" para confirmar</p>
+            `;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    </script>
+  </body>
+</html>
