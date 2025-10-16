@@ -2,13 +2,13 @@
   "map": { "width": 7, "height": 8 },
   "aisles": ["Prateleira 1","Prateleira 2","Prateleira 3","Prateleira 4","Prateleira 5","Prateleira 6","Prateleira 7"],
   "zones": [
-    { "x": 0, "y": 1, "w": 7, "h": 1, "label": "Prateleira 1", "emoji": "📦", "fill": "#facc15" },
-    { "x": 0, "y": 2, "w": 1, "h": 4, "label": "Prateleira 2", "emoji": "📦", "fill": "#d1d5db" },
-    { "x": 1, "y": 2, "w": 1, "h": 4, "label": "Prateleira 3", "emoji": "📦", "fill": "#60a5fa" },
-    { "x": 2, "y": 2, "w": 1, "h": 4, "label": "Prateleira 4", "emoji": "📦", "fill": "#fb923c" },
-    { "x": 3, "y": 2, "w": 1, "h": 4, "label": "Prateleira 5", "emoji": "📦", "fill": "#facc15" },
-    { "x": 0, "y": 6, "w": 7, "h": 1, "label": "Prateleira 6", "emoji": "📦", "fill": "#d1d5db" },
-    { "x": 0, "y": 7, "w": 7, "h": 1, "label": "Prateleira 7", "emoji": "📦", "fill": "#60a5fa" },
+    { "x": 0, "y": 1, "w": 7, "h": 1, "label": "Prateleira 1", "emoji": "📦", "fill": "#3b82f6" },
+    { "x": 0, "y": 2, "w": 1, "h": 4, "label": "Prateleira 2", "emoji": "📦", "fill": "#f97316" },
+    { "x": 1, "y": 2, "w": 1, "h": 4, "label": "Prateleira 3", "emoji": "📦", "fill": "#ef4444" },
+    { "x": 2, "y": 2, "w": 1, "h": 4, "label": "Prateleira 4", "emoji": "📦", "fill": "#3b82f6" },
+    { "x": 3, "y": 2, "w": 1, "h": 4, "label": "Prateleira 5", "emoji": "📦", "fill": "#f97316" },
+    { "x": 0, "y": 6, "w": 7, "h": 1, "label": "Prateleira 6", "emoji": "📦", "fill": "#ef4444" },
+    { "x": 0, "y": 7, "w": 7, "h": 1, "label": "Prateleira 7", "emoji": "📦", "fill": "#3b82f6" },
     { "x": 5, "y": 7, "w": 2, "h": 1, "label": "ENTRADA", "emoji": "", "fill": "#22c55e" }
   ],
   "items": [
