@@ -2,7 +2,7 @@
   "map": { "width": 7, "height": 8 },
   "aisles": ["Prateleira 1","Prateleira 2","Prateleira 3","Prateleira 4","Prateleira 5","Prateleira 6","Prateleira 7"],
   "zones": [
-    { "x": 0, "y": 1, "w": 7, "h": 1, "label": "Prateleira 1", "emoji": "📦", "fill": "#3b82f6" },
+    { "x": 0, "y": 1, "w": 7, "h": 1, "label": "Prateleira 1 - AZUL", "emoji": "📦", "fill": "#3b82f6" },
     { "x": 0, "y": 2, "w": 1, "h": 4, "label": "Prateleira 2", "emoji": "📦", "fill": "#f97316" },
     { "x": 1, "y": 2, "w": 1, "h": 4, "label": "Prateleira 3", "emoji": "📦", "fill": "#ef4444" },
     { "x": 2, "y": 2, "w": 1, "h": 4, "label": "Prateleira 4", "emoji": "📦", "fill": "#3b82f6" },
