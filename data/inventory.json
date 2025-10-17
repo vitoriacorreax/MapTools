@@ -1,5 +1,6 @@
 {
   "map": { "width": 12, "height": 10 },
+  "version": "2024-12-19",
   "aisles": [
     "Prateleira 1", "Prateleira 2", "Prateleira 3", "Prateleira 4", "Prateleira 5", "Prateleira 6",
     "Prateleira 7", "Prateleira 8", "Prateleira 9", "Prateleira 10", "Prateleira 11", "Prateleira 12",
