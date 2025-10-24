@@ -1,44 +1,61 @@
 {
-  "map": { "width": 12, "height": 10 },
-  "version": "2024-12-19",
+  "map": { "width": 15, "height": 12 },
+  "version": "2024-12-19-v2",
   "aisles": [
     "Prateleira 1", "Prateleira 2", "Prateleira 3", "Prateleira 4", "Prateleira 5", "Prateleira 6",
     "Prateleira 7", "Prateleira 8", "Prateleira 9", "Prateleira 10", "Prateleira 11", "Prateleira 12",
     "Prateleira 13", "Prateleira 14", "Prateleira 15", "Prateleira 16", "Prateleira 17", "Prateleira 18",
     "Prateleira 19", "Prateleira 20", "Prateleira 21", "Prateleira 22", "Prateleira 23", "Prateleira 24",
-    "Prateleira 25", "Prateleira 26", "Prateleira 27", "Prateleira 28", "Prateleira 29", "Prateleira 30",
-    "Prateleira 31", "Prateleira 32", "Prateleira 33", "Prateleira 34", "Prateleira 35", "Prateleira 36",
-    "Prateleira 37", "Prateleira 38", "Prateleira 39", "Prateleira 40", "Prateleira 41", "Prateleira 42",
-    "Prateleira 43", "Prateleira 44", "Prateleira 45", "Prateleira 46", "Prateleira 47", "Prateleira 48",
-    "Prateleira 49", "Prateleira 50", "Prateleira 51", "Prateleira 52", "Prateleira 53", "Prateleira 54",
-    "Prateleira 55", "Prateleira 56", "Prateleira 57", "Prateleira 58", "Prateleira 59", "Prateleira 60",
-    "Prateleira 61", "Prateleira 62", "Prateleira 63", "Prateleira 64", "Prateleira 65", "Prateleira 66",
-    "Prateleira 67", "Prateleira 68", "Prateleira 69", "Prateleira 70", "Prateleira 71", "Prateleira 72",
-    "Prateleira 73", "Prateleira 74", "Prateleira 75", "Prateleira 76", "Prateleira 77", "Prateleira 78",
-    "Prateleira 79", "Prateleira 80", "Prateleira 81", "Prateleira 82", "Prateleira 83", "Prateleira 84",
-    "Prateleira 85", "Prateleira 86", "Prateleira 87", "Prateleira 88", "Prateleira 89", "Prateleira 90",
-    "Prateleira 91", "Prateleira 92", "Prateleira 93", "Prateleira 94", "Prateleira 95", "Prateleira 96",
-    "Prateleira 97", "Prateleira 98", "Prateleira 99", "Prateleira 100"
+    "Prateleira 25", "Prateleira 26", "Prateleira 27", "Prateleira 28"
   ],
   "zones": [
-    { "x": 0, "y": 0, "w": 4, "h": 4, "label": "ESTOQUE INTERNO", "emoji": "📦", "fill": "#ec4899" },
-    { "x": 0, "y": 4, "w": 4, "h": 1, "label": "BALCÃO DE ATENDIMENTO", "emoji": "💼", "fill": "#8b5cf6" },
-    { "x": 10, "y": 9, "w": 2, "h": 1, "label": "ENTRADA", "emoji": "🚪", "fill": "#22c55e" },
-    { "x": 5, "y": 0, "w": 1, "h": 9, "label": "Prateleira 1", "emoji": "📚", "fill": "#facc15" },
-    { "x": 6, "y": 0, "w": 1, "h": 9, "label": "Prateleira 2", "emoji": "📚", "fill": "#94a3b8" },
-    { "x": 7, "y": 0, "w": 1, "h": 9, "label": "Prateleira 3", "emoji": "📚", "fill": "#3b82f6" },
-    { "x": 8, "y": 0, "w": 1, "h": 9, "label": "Prateleira 4", "emoji": "📚", "fill": "#f97316" },
-    { "x": 9, "y": 0, "w": 1, "h": 9, "label": "Prateleira 5", "emoji": "📚", "fill": "#facc15" },
-    { "x": 10, "y": 0, "w": 1, "h": 9, "label": "Prateleira 6", "emoji": "📚", "fill": "#94a3b8" },
-    { "x": 11, "y": 0, "w": 1, "h": 9, "label": "Prateleira 7", "emoji": "📚", "fill": "#3b82f6" }
+    { "x": 0, "y": 0, "w": 6, "h": 4, "label": "ESTOQUE", "emoji": "📦", "fill": "#d1d5db" },
+    { "x": 0, "y": 4, "w": 6, "h": 1, "label": "BALCÃO", "emoji": "💼", "fill": "#d1d5db" },
+    { "x": 12, "y": 10, "w": 3, "h": 2, "label": "ENTRADA", "emoji": "🚪", "fill": "#6b7280" },
+    
+    { "x": 13, "y": 8, "w": 1, "h": 2, "label": "Prateleira 1", "emoji": "📚", "fill": "#8b5cf6" },
+    { "x": 12, "y": 8, "w": 1, "h": 2, "label": "Prateleira 2", "emoji": "📚", "fill": "#ef4444" },
+    { "x": 11, "y": 8, "w": 1, "h": 2, "label": "Prateleira 3", "emoji": "📚", "fill": "#3b82f6" },
+    
+    { "x": 0, "y": 6, "w": 1, "h": 1, "label": "Prateleira 4", "emoji": "📚", "fill": "#ef4444" },
+    { "x": 0, "y": 7, "w": 1, "h": 2, "label": "Prateleira 5", "emoji": "📚", "fill": "#3b82f6" },
+    { "x": 0, "y": 9, "w": 1, "h": 2, "label": "Prateleira 6", "emoji": "📚", "fill": "#facc15" },
+    { "x": 1, "y": 9, "w": 1, "h": 1, "label": "Prateleira 7", "emoji": "📚", "fill": "#ef4444" },
+    
+    { "x": 2, "y": 6, "w": 1, "h": 2, "label": "Prateleira 8", "emoji": "📚", "fill": "#22c55e" },
+    { "x": 2, "y": 8, "w": 1, "h": 1, "label": "Prateleira 9", "emoji": "📚", "fill": "#f97316" },
+    { "x": 2, "y": 9, "w": 1, "h": 1, "label": "Prateleira 10", "emoji": "📚", "fill": "#ef4444" },
+    
+    { "x": 3, "y": 6, "w": 1, "h": 1, "label": "Prateleira 11", "emoji": "📚", "fill": "#ef4444" },
+    { "x": 3, "y": 7, "w": 1, "h": 2, "label": "Prateleira 12", "emoji": "📚", "fill": "#22c55e" },
+    { "x": 3, "y": 9, "w": 1, "h": 1, "label": "Prateleira 13", "emoji": "📚", "fill": "#f97316" },
+    { "x": 3, "y": 10, "w": 1, "h": 1, "label": "Prateleira 14", "emoji": "📚", "fill": "#ef4444" },
+    
+    { "x": 4, "y": 6, "w": 1, "h": 2, "label": "Prateleira 15", "emoji": "📚", "fill": "#22c55e" },
+    { "x": 4, "y": 8, "w": 1, "h": 1, "label": "Prateleira 16", "emoji": "📚", "fill": "#facc15" },
+    { "x": 4, "y": 9, "w": 1, "h": 2, "label": "Prateleira 17", "emoji": "📚", "fill": "#3b82f6" },
+    
+    { "x": 5, "y": 8, "w": 2, "h": 1, "label": "Prateleira 18", "emoji": "📚", "fill": "#8b5cf6" },
+    { "x": 7, "y": 8, "w": 1, "h": 2, "label": "Prateleira 19", "emoji": "📚", "fill": "#3b82f6" },
+    { "x": 8, "y": 8, "w": 1, "h": 2, "label": "Prateleira 20", "emoji": "📚", "fill": "#3b82f6" },
+    
+    { "x": 9, "y": 6, "w": 1, "h": 1, "label": "Prateleira 21", "emoji": "📚", "fill": "#8b5cf6" },
+    { "x": 9, "y": 7, "w": 1, "h": 2, "label": "Prateleira 22", "emoji": "📚", "fill": "#22c55e" },
+    { "x": 9, "y": 9, "w": 1, "h": 1, "label": "Prateleira 23", "emoji": "📚", "fill": "#8b5cf6" },
+    { "x": 9, "y": 10, "w": 1, "h": 1, "label": "Prateleira 24", "emoji": "📚", "fill": "#ef4444" },
+    { "x": 9, "y": 11, "w": 1, "h": 1, "label": "Prateleira 25", "emoji": "📚", "fill": "#facc15" },
+    
+    { "x": 10, "y": 5, "w": 1, "h": 1, "label": "Prateleira 26", "emoji": "📚", "fill": "#f97316" },
+    { "x": 11, "y": 5, "w": 1, "h": 1, "label": "Prateleira 27", "emoji": "📚", "fill": "#ef4444" },
+    { "x": 11, "y": 6, "w": 1, "h": 2, "label": "Prateleira 28", "emoji": "📚", "fill": "#facc15" }
   ],
   "items": [
-    { "sku": "PARAF-04X30", "name": "Parafuso 4x30 mm", "category": "Parafusos", "description": "Parafuso aço zincado philips", "x": 5, "y": 1, "aisle": "Prateleira 1" },
-    { "sku": "BUCHA-06", "name": "Bucha 6 mm", "category": "Buchas", "description": "Bucha de nylon para alvenaria", "x": 6, "y": 2, "aisle": "Prateleira 2" },
-    { "sku": "MART-500G", "name": "Martelo 500 g", "category": "Ferramentas", "description": "Cabo de madeira", "x": 7, "y": 3, "aisle": "Prateleira 3" },
-    { "sku": "SERRA-TICO", "name": "Serra Tico-Tico", "category": "Elétricas", "description": "110V - com 2 lâminas", "x": 8, "y": 4, "aisle": "Prateleira 4" },
-    { "sku": "TIN-18MM", "name": "Trena 8 m", "category": "Medição", "description": "Trava automática", "x": 9, "y": 5, "aisle": "Prateleira 5" },
-    { "sku": "CHAVE-FENDAS", "name": "Jogo de Chaves de Fenda", "category": "Ferramentas", "description": "Jogo com 6 peças", "x": 10, "y": 6, "aisle": "Prateleira 6" },
-    { "sku": "FITA-ISOLANTE", "name": "Fita Isolante", "category": "Elétricas", "description": "Fita isolante preta", "x": 11, "y": 7, "aisle": "Prateleira 7" }
+    { "sku": "PARAF-04X30", "name": "Parafuso 4x30 mm", "category": "Parafusos", "description": "Parafuso aço zincado philips", "x": 13, "y": 8, "aisle": "Prateleira 1" },
+    { "sku": "BUCHA-06", "name": "Bucha 6 mm", "category": "Buchas", "description": "Bucha de nylon para alvenaria", "x": 12, "y": 8, "aisle": "Prateleira 2" },
+    { "sku": "MART-500G", "name": "Martelo 500 g", "category": "Ferramentas", "description": "Cabo de madeira", "x": 11, "y": 8, "aisle": "Prateleira 3" },
+    { "sku": "SERRA-TICO", "name": "Serra Tico-Tico", "category": "Elétricas", "description": "110V - com 2 lâminas", "x": 0, "y": 6, "aisle": "Prateleira 4" },
+    { "sku": "TIN-18MM", "name": "Trena 8 m", "category": "Medição", "description": "Trava automática", "x": 0, "y": 7, "aisle": "Prateleira 5" },
+    { "sku": "CHAVE-FENDAS", "name": "Jogo de Chaves de Fenda", "category": "Ferramentas", "description": "Jogo com 6 peças", "x": 0, "y": 9, "aisle": "Prateleira 6" },
+    { "sku": "FITA-ISOLANTE", "name": "Fita Isolante", "category": "Elétricas", "description": "Fita isolante preta", "x": 1, "y": 9, "aisle": "Prateleira 7" }
   ]
 }
