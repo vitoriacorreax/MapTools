@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Editor de Mapa - Ferragem Fênix</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            margin: 0; 
+            background: #f8fafc; 
+            color: #111; 
+        }
+        .header {
+            background: #111;
+            color: #facc15;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header h1 { margin: 0; font-size: 24px; }
+        .container {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 20px;
+        }
+        .map-editor {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(15, 1fr);
+            grid-template-rows: repeat(12, 1fr);
+            gap: 2px;
+            background: #e5e7eb;
+            padding: 10px;
+            border-radius: 8px;
+            min-height: 600px;
+        }
+        .grid-cell {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            min-height: 40px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .grid-cell:hover {
+            background: #e5e7eb;
+            transform: scale(1.02);
+        }
+        .zone {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            cursor: move;
+            transition: all 0.2s;
+        }
+        .zone:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        .zone.dragging {
+            z-index: 100;
+            opacity: 0.8;
+        }
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        .zone-list {
+            margin-bottom: 20px;
+        }
+        .zone-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .zone-item:hover {
+            background: #f3f4f6;
+        }
+        .zone-item.selected {
+            background: #fef3c7;
+            border: 2px solid #facc15;
+        }
+        .zone-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+        }
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #facc15;
+            color: #111;
+        }
+        .btn-primary:hover {
+            background: #eab308;
+        }
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        .status {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-weight: bold;
+        }
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #34d399;
+        }
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+        .status.hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .map-grid {
+                grid-template-columns: repeat(15, 1fr);
+                grid-template-rows: repeat(12, 1fr);
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎨 Editor de Mapa - Ferragem Fênix</h1>
+    </div>
+    
+    <div class="container">
+        <div class="map-editor">
+            <h2>Mapa da Loja</h2>
+            <p>Clique e arraste as prateleiras para reposicioná-las</p>
+            
+            <div class="map-grid" id="mapGrid">
+                <!-- Grid será preenchido via JavaScript -->
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="status hidden" id="status"></div>
+            
+            <div class="zone-list">
+                <h3>Zonas do Mapa</h3>
+                <div id="zoneList">
+                    <!-- Lista será preenchida via JavaScript -->
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-primary" onclick="saveMap()">💾 Salvar Mapa</button>
+                <button class="btn btn-secondary" onclick="resetMap()">🔄 Resetar</button>
+                <button class="btn btn-secondary" onclick="window.location.href='/'">👁️ Ver Site</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let mapData = {{ data | tojson }};
+        let selectedZone = null;
+        let isDragging = false;
+        let dragOffset = { x: 0, y: 0 };
+
+        // Inicializar o mapa
+        function initMap() {
+            const grid = document.getElementById('mapGrid');
+            const zoneList = document.getElementById('zoneList');
+            
+            // Limpar grid
+            grid.innerHTML = '';
+            
+            // Criar células do grid
+            for (let y = 0; y < mapData.map.height; y++) {
+                for (let x = 0; x < mapData.map.width; x++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'grid-cell';
+                    cell.dataset.x = x;
+                    cell.dataset.y = y;
+                    grid.appendChild(cell);
+                }
+            }
+            
+            // Renderizar zonas
+            renderZones();
+            
+            // Renderizar lista de zonas
+            renderZoneList();
+        }
+
+        function renderZones() {
+            // Limpar zonas existentes
+            document.querySelectorAll('.zone').forEach(zone => zone.remove());
+            
+            mapData.zones.forEach((zone, index) => {
+                const zoneElement = document.createElement('div');
+                zoneElement.className = 'zone';
+                zoneElement.dataset.zoneIndex = index;
+                zoneElement.style.backgroundColor = zone.fill;
+                zoneElement.style.left = `${(zone.x / mapData.map.width) * 100}%`;
+                zoneElement.style.top = `${(zone.y / mapData.map.height) * 100}%`;
+                zoneElement.style.width = `${(zone.w / mapData.map.width) * 100}%`;
+                zoneElement.style.height = `${(zone.h / mapData.map.height) * 100}%`;
+                zoneElement.innerHTML = `${zone.emoji} ${zone.label}`;
+                
+                // Eventos de drag
+                zoneElement.addEventListener('mousedown', startDrag);
+                zoneElement.addEventListener('click', selectZone);
+                
+                document.getElementById('mapGrid').appendChild(zoneElement);
+            });
+        }
+
+        function renderZoneList() {
+            const zoneList = document.getElementById('zoneList');
+            zoneList.innerHTML = '';
+            
+            mapData.zones.forEach((zone, index) => {
+                const item = document.createElement('div');
+                item.className = 'zone-item';
+                item.dataset.zoneIndex = index;
+                item.innerHTML = `
+                    <div class="zone-color" style="background-color: ${zone.fill}"></div>
+                    <span>${zone.emoji} ${zone.label}</span>
+                `;
+                item.addEventListener('click', () => selectZone(index));
+                zoneList.appendChild(item);
+            });
+        }
+
+        function selectZone(index) {
+            // Remover seleção anterior
+            document.querySelectorAll('.zone-item').forEach(item => 
+                item.classList.remove('selected'));
+            
+            // Selecionar nova zona
+            selectedZone = index;
+            document.querySelector(`[data-zone-index="${index}"]`)?.classList.add('selected');
+        }
+
+        function startDrag(e) {
+            e.preventDefault();
+            isDragging = true;
+            selectedZone = parseInt(e.target.dataset.zoneIndex);
+            
+            const rect = e.target.getBoundingClientRect();
+            dragOffset.x = e.clientX - rect.left;
+            dragOffset.y = e.clientY - rect.top;
+            
+            e.target.classList.add('dragging');
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', stopDrag);
+        }
+
+        function drag(e) {
+            if (!isDragging || selectedZone === null) return;
+            
+            const grid = document.getElementById('mapGrid');
+            const gridRect = grid.getBoundingClientRect();
+            
+            const x = (e.clientX - gridRect.left - dragOffset.x) / gridRect.width;
+            const y = (e.clientY - gridRect.top - dragOffset.y) / gridRect.height;
+            
+            const newX = Math.max(0, Math.min(mapData.map.width - mapData.zones[selectedZone].w, Math.floor(x * mapData.map.width)));
+            const newY = Math.max(0, Math.min(mapData.map.height - mapData.zones[selectedZone].h, Math.floor(y * mapData.map.height)));
+            
+            mapData.zones[selectedZone].x = newX;
+            mapData.zones[selectedZone].y = newY;
+            
+            renderZones();
+        }
+
+        function stopDrag() {
+            isDragging = false;
+            document.querySelectorAll('.zone').forEach(zone => zone.classList.remove('dragging'));
+            document.removeEventListener('mousemove', drag);
+            document.removeEventListener('mouseup', stopDrag);
+        }
+
+        function saveMap() {
+            const status = document.getElementById('status');
+            status.className = 'status';
+            status.textContent = 'Salvando...';
+            status.classList.remove('hidden');
+            
+            fetch('/admin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(mapData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    status.className = 'status success';
+                    status.textContent = '✅ Mapa salvo com sucesso!';
+                } else {
+                    status.className = 'status error';
+                    status.textContent = `❌ Erro: ${data.message}`;
+                }
+            })
+            .catch(error => {
+                status.className = 'status error';
+                status.textContent = `❌ Erro: ${error.message}`;
+            });
+        }
+
+        function resetMap() {
+            if (confirm('Tem certeza que deseja resetar o mapa?')) {
+                location.reload();
+            }
+        }
+
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', initMap);
+    </script>
+</body>
+</html>

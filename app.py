@@ -218,38 +218,58 @@ def create_app() -> Flask:
             return query in haystack
 
         return jsonify([it for it in items if matches(it)])
+
+@app.route("/upload-logo", methods=["GET", "POST"])
+def upload_logo():
+    """Página para upload do logo"""
+    if request.method == "POST":
+        if 'logo' not in request.files:
+            flash('Nenhum arquivo selecionado!', 'error')
+            return redirect(url_for('upload_logo'))
+        
+        file = request.files['logo']
+        if file.filename == '':
+            flash('Nenhum arquivo selecionado!', 'error')
+            return redirect(url_for('upload_logo'))
+        
+        if file:
+            # Verificar se é imagem
+            if file.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg')):
+                # Salvar como logo.png
+                filename = 'logo.png'
+                filepath = BASE_DIR / "static" / filename
+                file.save(str(filepath))
+                flash('Logo atualizado com sucesso!', 'success')
+                return redirect(url_for('index'))
+            else:
+                flash('Formato não suportado! Use PNG, JPG, GIF ou SVG.', 'error')
+                return redirect(url_for('upload_logo'))
     
-    @app.route("/upload-logo", methods=["GET", "POST"])
-    def upload_logo():
-        """Página para upload do logo"""
-        if request.method == "POST":
-            if 'logo' not in request.files:
-                flash('Nenhum arquivo selecionado!', 'error')
-                return redirect(url_for('upload_logo'))
-            
-            file = request.files['logo']
-            if file.filename == '':
-                flash('Nenhum arquivo selecionado!', 'error')
-                return redirect(url_for('upload_logo'))
-            
-            if file:
-                # Verificar se é imagem
-                if file.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg')):
-                    # Salvar como logo.png
-                    filename = 'logo.png'
-                    filepath = BASE_DIR / "static" / filename
-                    file.save(str(filepath))
-                    flash('Logo atualizado com sucesso!', 'success')
-                    return redirect(url_for('index'))
-                else:
-                    flash('Formato não suportado! Use PNG, JPG, GIF ou SVG.', 'error')
-                    return redirect(url_for('upload_logo'))
-        
-        # Verificar se existe logo
-        logo_path = BASE_DIR / "static" / "logo.png"
-        logo_url = f"/static/logo.png" if logo_path.exists() else None
-        
-        return render_template("upload_logo.html", logo_url=logo_url)
+    # Verificar se existe logo
+    logo_path = BASE_DIR / "static" / "logo.png"
+    logo_url = f"/static/logo.png" if logo_path.exists() else None
+    
+    return render_template("upload_logo.html", logo_url=logo_url)
+
+@app.route("/admin", methods=["GET", "POST"])
+def admin():
+    """Página de administração do mapa"""
+    if request.method == "POST":
+        # Salvar mudanças no mapa
+        try:
+            new_data = request.get_json()
+            with open(DATA_FILE, 'w', encoding='utf-8') as f:
+                json.dump(new_data, f, indent=2, ensure_ascii=False)
+            return jsonify({"success": True, "message": "Mapa atualizado com sucesso!"})
+        except Exception as e:
+            return jsonify({"success": False, "message": f"Erro ao salvar: {str(e)}"}), 500
+    
+    # Carregar dados atuais
+    data = load_inventory()
+    logo_path = BASE_DIR / "static" / "logo.png"
+    logo_url = f"/static/logo.png" if logo_path.exists() else None
+    
+    return render_template("admin.html", data=data, logo_url=logo_url)
     
     return app
 
