@@ -173,6 +173,8 @@ def create_app() -> Flask:
             "index.html",
             query=query,
             map_cfg=map_cfg,
+            map_width=map_cfg["width"],
+            map_height=map_cfg["height"],
             cells=cells,
             items=filtered_items,
             categories=categories,
