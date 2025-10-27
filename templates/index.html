@@ -59,7 +59,7 @@
       <section class="panel" id="map-top">
         <div style="margin-bottom:12px;font-weight:700;">Mapa da Loja</div>
         <div style="margin-bottom:8px;padding:8px;background:#f0f9ff;border-radius:6px;font-size:12px;">
-          <strong>📍 Orientação:</strong> Linha verde = <strong>ENTRADA</strong> | Cores = <strong>PRATELEIRAS</strong>
+          <strong>📍 Orientação:</strong> Linha verde = <strong>ENTRADA</strong> | Cores = <strong>PRATELEIRAS</strong> | <strong>📊 Coordenadas:</strong> X=coluna, Y=linha (ex: X=5, Y=3)
       </div>
 
         {% if view_mode=='map' %}
@@ -81,6 +81,31 @@
             <!-- Parede inferior (com abertura da porta) -->
             <line x1="0" y1="{{ svg_height }}" x2="{{ svg_width * 0.7 }}" y2="{{ svg_height }}" stroke="#374151" stroke-width="3" />
             <line x1="{{ svg_width * 0.8 }}" y1="{{ svg_height }}" x2="{{ svg_width }}" y2="{{ svg_height }}" stroke="#374151" stroke-width="3" />
+            
+            <!-- SISTEMA DE COORDENADAS X,Y -->
+            <!-- Grid de coordenadas no fundo -->
+            {% set cell_width = svg_width / map_width %}
+            {% set cell_height = svg_height / map_height %}
+            
+            <!-- Linhas verticais (X) -->
+            {% for x in range(map_width + 1) %}
+            <line x1="{{ x * cell_width }}" y1="0" x2="{{ x * cell_width }}" y2="{{ svg_height }}" stroke="#e5e7eb" stroke-width="1" opacity="0.5" />
+            {% endfor %}
+            
+            <!-- Linhas horizontais (Y) -->
+            {% for y in range(map_height + 1) %}
+            <line x1="0" y1="{{ y * cell_height }}" x2="{{ svg_width }}" y2="{{ y * cell_height }}" stroke="#e5e7eb" stroke-width="1" opacity="0.5" />
+            {% endfor %}
+            
+            <!-- Números das coordenadas X (colunas) -->
+            {% for x in range(map_width) %}
+            <text x="{{ (x + 0.5) * cell_width }}" y="15" text-anchor="middle" font-size="10" fill="#6b7280" font-weight="bold">{{ x }}</text>
+            {% endfor %}
+            
+            <!-- Números das coordenadas Y (linhas) -->
+            {% for y in range(map_height) %}
+            <text x="10" y="{{ (y + 0.5) * cell_height + 3 }}" text-anchor="middle" font-size="10" fill="#6b7280" font-weight="bold">{{ y }}</text>
+            {% endfor %}
             
             <!-- DIVISÓRIAS INTERNAS -->
             <!-- Divisória entre estoque e balcão -->
