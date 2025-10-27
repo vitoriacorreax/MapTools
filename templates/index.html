@@ -89,17 +89,7 @@
             <line x1="{{ svg_width * 0.6 }}" y1="0" x2="{{ svg_width * 0.6 }}" y2="{{ svg_height * 0.2 }}" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,5" />
             
             <!-- ÁREAS FUNCIONAIS -->
-            <!-- Área de Estoque (canto superior esquerdo) -->
-            <rect x="0" y="0" width="{{ svg_width * 0.3 }}" height="{{ svg_height * 0.2 }}" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1" />
-            <text x="{{ svg_width * 0.15 }}" y="{{ svg_height * 0.1 }}" text-anchor="middle" font-size="12" fill="#374151" font-weight="bold">ESTOQUE</text>
-            
-            <!-- Balcão de Atendimento (centro superior) -->
-            <rect x="{{ svg_width * 0.3 }}" y="0" width="{{ svg_width * 0.3 }}" height="{{ svg_height * 0.2 }}" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1" />
-            <text x="{{ svg_width * 0.45 }}" y="{{ svg_height * 0.1 }}" text-anchor="middle" font-size="12" fill="#374151" font-weight="bold">BALCÃO</text>
-            
-            <!-- Área de Iluminação e Ferramentas (lado esquerdo) -->
-            <rect x="0" y="{{ svg_height * 0.2 }}" width="{{ svg_width * 0.15 }}" height="{{ svg_height * 0.6 }}" fill="#fef3c7" stroke="#9ca3af" stroke-width="1" />
-            <text x="{{ svg_width * 0.075 }}" y="{{ svg_height * 0.5 }}" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold" transform="rotate(-90 {{ svg_width * 0.075 }} {{ svg_height * 0.5 }})">ILUMAT. FERRAM.</text>
+            <!-- As áreas funcionais são renderizadas dinamicamente pelas zonas do inventory.json -->
             
             <!-- PRATELEIRAS COLORIDAS (CLICÁVEIS) -->
             {% for z in svg_zones %}
