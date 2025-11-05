@@ -243,12 +243,6 @@
       </form>
     </div>
 
-    <div class="chips">
-      <a href="/?q={{ query }}" class="chip{% if not active_category %} active{% endif %}">Todas</a>
-      {% for cat in categories %}
-      <a href="/?q={{ query }}&cat={{ cat }}&view={{ view_mode }}&cell={{ cell_px }}" class="chip{% if active_category==cat %} active{% endif %}">{{ cat }}</a>
-      {% endfor %}
-    </div>
 
     <div id="layout">
       <section class="panel" id="map-top">
