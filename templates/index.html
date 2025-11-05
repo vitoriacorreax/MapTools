@@ -2,187 +2,378 @@
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mapa do Estoque - Ferragem</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+    <title>Mapa da Ferragem</title>
     <style>
-      /* CSS interno para responsividade */
-      #layout { display:grid; grid-template-columns: 1fr 360px; gap:16px; padding:16px; }
-      .panel { border:1px solid #ddd; border-radius:8px; padding:12px; background:#fff; }
-      .result-item { display:grid; grid-template-columns:1fr auto; gap:8px; align-items:center; }
-      .chips { padding:12px 16px; display:flex; flex-wrap:wrap; gap:8px; }
-      .topbar { padding:16px; border-bottom:1px solid #eab308; display:flex; gap:12px; align-items:center; justify-content:space-between; background:linear-gradient(135deg,#111827,#1f2937); color:#facc15; }
-      h2 { margin:4px 0 12px; font-size:18px; }
-      body { font-size:16px; line-height:1.35; }
-      @media (max-width: 768px) {
-        #layout { grid-template-columns: 1fr; padding:8px; gap:12px; }
-        .panel { padding:10px; border-radius:10px; }
-        .result-item { grid-template-columns: 1fr; }
-        .chips { gap:6px; padding:8px; overflow-x:auto; white-space:nowrap; }
-        .chips a { display:inline-block; }
-        .topbar { flex-direction: column; align-items: stretch; }
-        .topbar form { width:100%; display:flex; gap:8px; }
-        .topbar form input { width:100%; flex:1; }
-        .topbar form input, .topbar form button, .topbar form a { font-size:16px; padding:10px 12px !important; }
-        svg { max-height: 360px; }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background: #f5f5f5;
+        color: #333;
+        padding: 8px;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      .topbar {
+        background: linear-gradient(135deg, #1f2937, #111827);
+        color: #facc15;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .topbar-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid #facc15;
+        background: #111;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        color: #facc15;
+        flex-shrink: 0;
+      }
+      .logo img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .topbar-title {
+        flex: 1;
+        font-weight: 800;
+        letter-spacing: 0.4px;
+      }
+      .topbar-subtitle {
+        font-size: 11px;
+        color: #fde68a;
+        margin-top: 2px;
+      }
+      .search-form {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+      }
+      .search-form input {
+        flex: 1;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #eab308;
+        background: #fff;
+        color: #111;
+        font-size: 16px;
+      }
+      .search-form button, .search-form a {
+        padding: 10px 14px;
+        border-radius: 8px;
+        border: 1px solid #eab308;
+        background: #facc15;
+        color: #111;
+        text-decoration: none;
+        font-weight: 600;
+        white-space: nowrap;
+        font-size: 14px;
+      }
+      .search-form a.secondary {
+        background: transparent;
+        color: #fde68a;
+        border-color: #eab308;
+      }
+      .chips {
+        padding: 8px 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+        overflow-x: auto;
+      }
+      .chip {
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        text-decoration: none;
+        color: #333;
+        background: #fff;
+        white-space: nowrap;
+        font-size: 13px;
+      }
+      .chip.active {
+        background: #eef;
+        border-color: #0ea5e9;
+      }
+      #layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .panel {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+      }
+      .map-container {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        max-height: calc(100vh - 300px);
+      }
+      .map-svg {
+        width: 100%;
+        height: auto;
+        min-width: 100%;
+        max-width: 100%;
+        background: #f8fafc;
+        border-radius: 8px;
+        display: block;
+      }
+      .results-panel h2 {
+        margin: 0 0 12px 0;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .result-item {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .result-item strong {
+        font-size: 15px;
+        color: #111;
+      }
+      .result-item small {
+        color: #666;
+        font-size: 12px;
+      }
+      .result-item a {
+        display: inline-block;
+        padding: 6px 12px;
+        border: 1px solid #aaa;
+        border-radius: 6px;
+        text-decoration: none;
+        color: #333;
+        font-size: 12px;
+        margin-top: 4px;
+        align-self: flex-start;
+      }
+      .map-title {
+        font-weight: 700;
+        margin-bottom: 8px;
+        font-size: 16px;
+      }
+      .map-info {
+        padding: 8px;
+        background: #f0f9ff;
+        border-radius: 6px;
+        font-size: 11px;
+        margin-bottom: 12px;
+        color: #555;
+      }
+      @media (max-width: 767px) {
+        .map-container {
+          max-height: calc(100vh - 250px);
+          overflow-x: auto;
+          overflow-y: auto;
+        }
+        .map-svg {
+          min-width: 100%;
+          max-width: 100%;
+        }
+        .panel {
+          padding: 8px;
+        }
+        .results-panel {
+          max-height: 300px;
+          overflow-y: auto;
+        }
+      }
+      @media (min-width: 768px) {
+        body {
+          padding: 16px;
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+        #layout {
+          grid-template-columns: 1fr 320px;
+        }
+        .topbar {
+          flex-direction: row;
+          align-items: center;
+        }
+        .search-form {
+          width: auto;
+          max-width: 600px;
+        }
       }
     </style>
   </head>
   <body>
     <div class="topbar">
-        <div style="display:flex;align-items:center;gap:12px;">
-          {% if logo_url %}
-            <img src="{{ logo_url }}" alt="Ferragem Fênix" style="width:44px;height:44px;border-radius:9999px;object-fit:cover;border:2px solid #facc15;background:#111;" />
-          {% else %}
-            <div style="width:44px;height:44px;border-radius:9999px;background:#facc15;color:#111;display:flex;align-items:center;justify-content:center;font-weight:800;">FF</div>
-          {% endif %}
-        <div>
-          <div style="font-weight:800;letter-spacing:.4px;">Ferragem Fênix</div>
-          <div style="font-size:12px;color:#fde68a;">Aberta todos os dias • Sempre aberta ao meio‑dia</div>
+      <div class="topbar-header">
+        {% if logo_url %}
+          <div class="logo">
+            <img src="{{ logo_url }}" alt="Logo" />
+          </div>
+        {% else %}
+          <div class="logo">FF</div>
+        {% endif %}
+        <div class="topbar-title">
+          <div>Ferragem Fênix</div>
+          <div class="topbar-subtitle">Aberta todos os dias • Sempre aberta ao meio‑dia</div>
         </div>
       </div>
-           <form method="get" action="/" style="display:flex;gap:8px;">
-             <input name="q" value="{{ query }}" placeholder="Buscar produtos..." style="padding:8px;border-radius:8px;border:1px solid #eab308;color:#111;" />
-             <button type="submit" style="padding:8px 12px;border-radius:8px;background:#facc15;color:#111;border:1px solid #eab308;">Buscar</button>
-             <a href="/" style="padding:8px 12px;border:1px solid #eab308;border-radius:8px;text-decoration:none;color:#fde68a;">Limpar</a>
-             <a href="/admin" style="padding:8px 12px;border:1px solid #8b5cf6;border-radius:8px;text-decoration:none;color:#8b5cf6;background:#f3f4f6;">🎨 Editar Mapa</a>
-           </form>
+      <form method="get" action="/" class="search-form">
+        <input name="q" value="{{ query }}" placeholder="Buscar produtos..." />
+        <button type="submit">Buscar</button>
+        <a href="/" class="secondary">Limpar</a>
+      </form>
     </div>
 
-    <div id="chips" class="chips">
-      <a href="/?q={{ query }}" style="padding:6px 10px;border:1px solid #ddd;border-radius:20px;text-decoration:none;{% if not active_category %}background:#eef;{% endif %}">Todas</a>
+    <div class="chips">
+      <a href="/?q={{ query }}" class="chip{% if not active_category %} active{% endif %}">Todas</a>
       {% for cat in categories %}
-      <a href="/?q={{ query }}&cat={{ cat }}&view={{ view_mode }}&cell={{ cell_px }}" style="padding:6px 10px;border:1px solid #ddd;border-radius:20px;text-decoration:none;{% if active_category==cat %}background:#eef;{% endif %}">{{ cat }}</a>
+      <a href="/?q={{ query }}&cat={{ cat }}&view={{ view_mode }}&cell={{ cell_px }}" class="chip{% if active_category==cat %} active{% endif %}">{{ cat }}</a>
       {% endfor %}
     </div>
 
     <div id="layout">
       <section class="panel" id="map-top">
-        <div style="margin-bottom:12px;font-weight:700;">Mapa da Loja</div>
-        <div style="margin-bottom:8px;padding:8px;background:#f0f9ff;border-radius:6px;font-size:12px;">
-          <strong>📍 Orientação:</strong> Linha verde = <strong>ENTRADA</strong> | Cores = <strong>PRATELEIRAS</strong> | <strong>📊 Coordenadas:</strong> X=coluna, Y=linha (ex: X=5, Y=3)
-      </div>
+        <div class="map-title">Mapa da Loja</div>
+        <div class="map-info">
+          <strong>📍 Orientação:</strong> Áreas cinza = <strong>ESTOQUE/BALCÃO/ENTRADA</strong> | Números coloridos = <strong>SEÇÕES</strong> | Clique para ver produtos
+        </div>
 
         {% if view_mode=='map' %}
-          <h2 style="margin:4px 0 12px;">Mapa ({{ map_cfg.width }} × {{ map_cfg.height }})</h2>
-          <svg viewBox="0 0 {{ svg_width }} {{ svg_height }}" width="100%" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #ddd;border-radius:8px;background:#f8fafc;">
-            <defs>
-              <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#00000055" />
-              </filter>
-            </defs>
-            
-            <!-- PAREDES DA LOJA -->
+        <div class="map-container">
+          <svg viewBox="0 0 {{ svg_width }} {{ svg_height }}" class="map-svg" xmlns="http://www.w3.org/2000/svg">
+            <!-- PAREDES PRETAS (BORDAS GROSSAS) -->
             <!-- Parede superior -->
-            <line x1="0" y1="0" x2="{{ svg_width }}" y2="0" stroke="#374151" stroke-width="3" />
+            <rect x="0" y="0" width="{{ svg_width }}" height="{{ walls_cfg.thickness }}" fill="{{ walls_cfg.color }}" />
+            <!-- Parede inferior -->
+            <rect x="0" y="{{ svg_height - walls_cfg.thickness }}" width="{{ svg_width }}" height="{{ walls_cfg.thickness }}" fill="{{ walls_cfg.color }}" />
             <!-- Parede esquerda -->
-            <line x1="0" y1="0" x2="0" y2="{{ svg_height }}" stroke="#374151" stroke-width="3" />
+            <rect x="0" y="0" width="{{ walls_cfg.thickness }}" height="{{ svg_height }}" fill="{{ walls_cfg.color }}" />
             <!-- Parede direita -->
-            <line x1="{{ svg_width }}" y1="0" x2="{{ svg_width }}" y2="{{ svg_height }}" stroke="#374151" stroke-width="3" />
-            <!-- Parede inferior (com abertura da porta) -->
-            <line x1="0" y1="{{ svg_height }}" x2="{{ svg_width * 0.7 }}" y2="{{ svg_height }}" stroke="#374151" stroke-width="3" />
-            <line x1="{{ svg_width * 0.8 }}" y1="{{ svg_height }}" x2="{{ svg_width }}" y2="{{ svg_height }}" stroke="#374151" stroke-width="3" />
+            <rect x="{{ svg_width - walls_cfg.thickness }}" y="0" width="{{ walls_cfg.thickness }}" height="{{ svg_height }}" fill="{{ walls_cfg.color }}" />
             
-            <!-- SISTEMA DE COORDENADAS X,Y -->
-            <!-- Grid de coordenadas no fundo -->
-            {% set cell_width = svg_width / map_width %}
-            {% set cell_height = svg_height / map_height %}
-            
-            <!-- Linhas verticais (X) -->
-            {% for x in range(map_width + 1) %}
-            <line x1="{{ x * cell_width }}" y1="0" x2="{{ x * cell_width }}" y2="{{ svg_height }}" stroke="#e5e7eb" stroke-width="1" opacity="0.5" />
-            {% endfor %}
-            
-            <!-- Linhas horizontais (Y) -->
-            {% for y in range(map_height + 1) %}
-            <line x1="0" y1="{{ y * cell_height }}" x2="{{ svg_width }}" y2="{{ y * cell_height }}" stroke="#e5e7eb" stroke-width="1" opacity="0.5" />
-            {% endfor %}
-            
-            <!-- Números das coordenadas X (colunas) -->
-            {% for x in range(map_width) %}
-            <text x="{{ (x + 0.5) * cell_width }}" y="15" text-anchor="middle" font-size="10" fill="#6b7280" font-weight="bold">{{ x }}</text>
-            {% endfor %}
-            
-            <!-- Números das coordenadas Y (linhas) -->
-            {% for y in range(map_height) %}
-            <text x="10" y="{{ (y + 0.5) * cell_height + 3 }}" text-anchor="middle" font-size="10" fill="#6b7280" font-weight="bold">{{ y }}</text>
-            {% endfor %}
-            
-            <!-- DIVISÓRIAS INTERNAS -->
-            <!-- Divisória entre estoque e balcão -->
-            <line x1="{{ svg_width * 0.3 }}" y1="0" x2="{{ svg_width * 0.3 }}" y2="{{ svg_height * 0.2 }}" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,5" />
-            <!-- Divisória entre balcão e área de vendas -->
-            <line x1="{{ svg_width * 0.6 }}" y1="0" x2="{{ svg_width * 0.6 }}" y2="{{ svg_height * 0.2 }}" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,5" />
-            
-            <!-- ÁREAS FUNCIONAIS -->
-            <!-- As áreas funcionais são renderizadas dinamicamente pelas zonas do inventory.json -->
-            
-            <!-- PRATELEIRAS COLORIDAS (CLICÁVEIS) -->
-            {% for z in svg_zones %}
-            {% if z.label != "ENTRADA" %}
-            {% set is_sel = (selected_col is not none and selected_col==z.col) %}
-            <a xlink:href="/?q={{ query }}&cat={{ active_category }}&view={{ view_mode }}&cell={{ cell_px }}&col={{ z.col }}">
-              <rect x="{{ z.x }}" y="{{ z.y }}" width="{{ z.w }}" height="{{ z.h }}" fill="{{ z.fill }}" stroke="{% if is_sel %}#0ea5e9{% else %}#9ca3af{% endif %}" stroke-width="{% if is_sel %}3{% else %}1{% endif %}" />
-              <text x="{{ z.x + z.w/2 }}" y="{{ z.y + z.h/2 }}" text-anchor="middle" font-size="10" fill="#374151" font-weight="bold">{{ z.label }}</text>
-            </a>
+            <!-- ÁREAS FUNCIONAIS (CINZA) - ESTOQUE, BALCÃO, ENTRADA E PAREDES -->
+            {% for z in svg_functional %}
+            <rect 
+              x="{{ z.x }}" 
+              y="{{ z.y }}" 
+              width="{{ z.w }}" 
+              height="{{ z.h }}" 
+              fill="{{ z.fill }}" 
+              stroke="{% if z.type == 'wall' %}{{ z.fill }}{% else %}#9ca3af{% endif %}" 
+              stroke-width="{% if z.type == 'wall' %}0{% else %}1{% endif %}"
+            />
+            {% if z.label %}
+            <text 
+              x="{{ z.x + z.w/2 }}" 
+              y="{{ z.y + z.h/2 }}" 
+              text-anchor="middle" 
+              dominant-baseline="middle" 
+              font-size="{{ z.fs }}" 
+              font-weight="bold" 
+              fill="#374151"
+            >{{ z.label }}</text>
             {% endif %}
             {% endfor %}
             
-            <!-- PORTA (linha verde no canto inferior direito) -->
-            <line x1="{{ svg_width * 0.7 }}" y1="{{ svg_height }}" x2="{{ svg_width * 0.8 }}" y2="{{ svg_height }}" stroke="#22c55e" stroke-width="8" />
-            <text x="{{ svg_width * 0.75 }}" y="{{ svg_height - 5 }}" text-anchor="middle" font-size="10" fill="#22c55e" font-weight="bold">ENTRADA</text>
-
-            <!-- PONTOS DOS PRODUTOS -->
-            {% for it in svg_items %}
-            <a id="pos-{{ it.gx }}-{{ it.gy }}" href="#pos-{{ it.gx }}-{{ it.gy }}">
-              <circle cx="{{ it.cx }}" cy="{{ it.cy }}" r="{{ it.r }}" fill="{{ it.fill }}" stroke="#fff" stroke-width="1" />
+            <!-- SEÇÕES NUMERADAS (COLORIDAS E CLICÁVEIS) -->
+            {% for z in svg_sections %}
+            {% set is_sel = (selected_col is not none and selected_col==z.col) %}
+            <a xlink:href="/?q={{ query }}&cat={{ active_category }}&view={{ view_mode }}&cell={{ cell_px }}&col={{ z.col }}" style="cursor: pointer;">
+              <rect 
+                x="{{ z.x }}" 
+                y="{{ z.y }}" 
+                width="{{ z.w }}" 
+                height="{{ z.h }}" 
+                fill="{{ z.fill }}" 
+                stroke="{% if is_sel %}#0ea5e9{% else %}#9ca3af{% endif %}" 
+                stroke-width="{% if is_sel %}3{% else %}1{% endif %}"
+                opacity="0.9"
+              />
+              <text 
+                x="{{ z.x + z.w/2 }}" 
+                y="{{ z.y + z.h/2 }}" 
+                text-anchor="middle" 
+                dominant-baseline="middle" 
+                font-size="{{ z.fs }}" 
+                font-weight="bold" 
+                fill="#fff"
+                style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3);"
+              >{{ z.label }}</text>
             </a>
             {% endfor %}
-          </svg>
-        {% else %}
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
-            {% for it in items %}
-            <li style="border:1px solid #ddd;border-radius:8px;padding:8px 10px;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;">
-              <div>
-                <div><strong>{{ it.name }}</strong></div>
-                <div style="font-size:12px;color:#555;">SKU {{ it.sku }} • {{ it.category }}</div>
-                <div style="font-size:12px;color:#555;">Corredor: <strong>{{ it.aisle_display }}</strong></div>
-              </div>
-              <div style="text-align:right;">
-                <a href="/?q={{ query }}&cat={{ active_category }}&view={{ view_mode }}&cell={{ cell_px }}&col={{ it.x }}#map-top" style="display:inline-block;margin-top:6px;padding:6px 10px;border:1px solid #aaa;border-radius:6px;text-decoration:none;color:inherit;">Ir no mapa</a>
-              </div>
-            </li>
+            
+            <!-- PRODUTOS (PONTOS NO MAPA) -->
+            {% for it in svg_items %}
+            <circle 
+              cx="{{ it.cx }}" 
+              cy="{{ it.cy }}" 
+              r="{{ it.r }}" 
+              fill="{{ it.fill }}" 
+              stroke="#fff" 
+              stroke-width="2"
+              style="pointer-events: none;"
+            />
             {% endfor %}
-          </ul>
+          </svg>
+        </div>
+        {% else %}
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          {% for it in items %}
+          <li class="result-item">
+            <div>
+              <strong>{{ it.name }}</strong>
+              <div style="margin-top:4px;"><small>SKU {{ it.sku }} • {{ it.category }}</small></div>
+              <div><small>Seção: <strong>{{ it.aisle_display }}</strong></small></div>
+            </div>
+            <a href="/?q={{ query }}&cat={{ active_category }}&view={{ view_mode }}&cell={{ cell_px }}&col={{ it.x }}#map-top">Ir no mapa</a>
+          </li>
+          {% endfor %}
+        </ul>
         {% endif %}
       </section>
 
-      <aside class="panel">
-        <h2 style="margin:4px 0 12px;">Resultados</h2>
+      <aside class="panel results-panel">
+        <h2>Resultados ({{ items|length }})</h2>
         {% if items|length == 0 %}
-          <p>Nenhum item encontrado.</p>
+          <p style="color: #666;">Nenhum item encontrado.</p>
         {% else %}
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <div>
             {% for it in items %}
-            <li class="result-item" style="border:1px solid #ddd;border-radius:8px;padding:8px 10px;">
+            <div class="result-item">
               <div>
-                <div><strong>{{ it.name }}</strong></div>
-                <div style="font-size:12px;color:#555;">SKU {{ it.sku }} • {{ it.category }}</div>
-                <div style="font-size:12px;color:#555;">Corredor: <strong>{{ it.aisle_display }}</strong></div>
+                <strong>{{ it.name }}</strong>
+                <div style="margin-top:4px;"><small>SKU {{ it.sku }} • {{ it.category }}</small></div>
+                <div><small>Seção: <strong>{{ it.aisle_display }}</strong></small></div>
               </div>
-              <div>
-                <a href="/?q={{ query }}&cat={{ active_category }}&view={{ view_mode }}&cell={{ cell_px }}&col={{ it.x }}#map-top" style="display:inline-block;margin-top:6px;padding:6px 10px;border:1px solid #aaa;border-radius:6px;text-decoration:none;color:inherit;">Ir no mapa</a>
-              </div>
-            </li>
+              <a href="/?q={{ query }}&cat={{ active_category }}&view={{ view_mode }}&cell={{ cell_px }}&col={{ it.x }}#map-top">Ir no mapa</a>
+            </div>
             {% endfor %}
-          </ul>
+          </div>
         {% endif %}
       </aside>
     </div>
 
-    <div style="padding:12px 16px;border-top:1px solid #ddd;color:#666;">
-      <small>Exemplo educacional - Universidade</small>
+    <div style="padding:12px 16px;text-align:center;color:#666;font-size:12px;margin-top:16px;">
+      <small>Mapa Virtual Interativo - Ferragem Fênix</small>
     </div>
   </body>
-  </html>
-
-
+</html>

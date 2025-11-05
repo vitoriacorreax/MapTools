@@ -38,9 +38,9 @@ def create_app() -> Flask:
         active_category: str = request.args.get("cat", "").strip()
         view_mode: str = request.args.get("view", "map").strip() or "map"  # "map" ou "list"
         try:
-            cell_px = max(32, min(128, int(request.args.get("cell", "80"))))
+            cell_px = max(32, min(128, int(request.args.get("cell", "50"))))
         except ValueError:
-            cell_px = 80
+            cell_px = 50  # Tamanho padrão menor para melhor visualização no mobile
         # Coluna selecionada (para filtrar por coluna ao clicar no mapa)
         selected_col_raw = request.args.get("col")
         try:
@@ -52,6 +52,7 @@ def create_app() -> Flask:
         all_items: List[Dict[str, Any]] = inventory.get("items", [])
         zones: List[Dict[str, Any]] = inventory.get("zones", [])
         aisles: List[str] = inventory.get("aisles", [])
+        walls_cfg: Dict[str, Any] = inventory.get("walls", {"thickness": 4, "color": "#000000"})
 
         # Lista de categorias únicas (ordenadas)
         categories = sorted({str(it.get("category", "")).strip() for it in all_items if it.get("category")})
@@ -105,41 +106,56 @@ def create_app() -> Flask:
                 cells[y][x].append(it)
 
         # Layout SVG (tamanho em pixels e elementos prontos)
-        spacing = 8  # espaço entre células
-        margin = 16
+        # Espaçamento reduzido para prateleiras mais próximas da imagem real
+        spacing = 2  # espaço entre células (reduzido para prateleiras mais compactas)
+        margin = walls_cfg.get("thickness", 4)  # Margem igual à espessura das paredes
         svg_width = margin * 2 + width * cell_px + (width - 1) * spacing
         svg_height = margin * 2 + height * cell_px + (height - 1) * spacing
 
-        def cell_to_px(coord: int) -> int:
-            return margin + coord * (cell_px + spacing)
+        def cell_to_px(coord) -> int:
+            # Aceita coordenadas float para paredes finas
+            return margin + int(coord * (cell_px + spacing))
 
         svg_zones: List[Dict[str, Any]] = []
+        svg_functional: List[Dict[str, Any]] = []
+        svg_sections: List[Dict[str, Any]] = []
         for z in zones:
-            zx = int(z.get("x", 0))
+            zx = float(z.get("x", 0))
             zy = int(z.get("y", 0))
-            zw = int(z.get("w", 1))
+            zw = float(z.get("w", 1))
             zh = int(z.get("h", 1))
-            px_w = zw * cell_px + (zw - 1) * spacing
+            # Para paredes finas (w < 1), usar largura fixa pequena
+            if z.get("type") == "wall" and zw < 1:
+                px_w = max(2, int(zw * cell_px))  # Largura mínima de 2px
+            else:
+                px_w = int(zw * cell_px + (max(0, int(zw) - 1)) * spacing)
             px_h = zh * cell_px + (zh - 1) * spacing
             base_fs = max(10, min(18, cell_px // 3 + 6))
             # estimativa de caracteres que cabem na largura do retângulo
             max_chars = max(4, int((px_w - 24) / (base_fs * 0.6)))
             raw_label = str(z.get("label", ""))
             label_display = raw_label if len(raw_label) <= max_chars else raw_label[: max(0, max_chars - 1) ] + "…"
-            svg_zones.append(
-                {
-                    "x": cell_to_px(zx),
-                    "y": cell_to_px(zy),
-                    "w": px_w,
-                    "h": px_h,
-                    "label": raw_label,
-                    "label_display": label_display,
-                    "fs": base_fs,
-                    "emoji": z.get("emoji", ""),
-                    "fill": z.get("fill", "#cbd5e1"),
-                    "col": zx,
-                }
-            )
+            zone_data = {
+                "x": cell_to_px(zx),
+                "y": cell_to_px(zy),
+                "w": px_w,
+                "h": px_h,
+                "label": raw_label,
+                "label_display": label_display,
+                "fs": base_fs,
+                "emoji": z.get("emoji", ""),
+                "fill": z.get("fill", "#cbd5e1"),
+                "col": zx,
+                "type": z.get("type", "section"),
+            }
+            svg_zones.append(zone_data)
+            # Separar zonas funcionais, paredes e seções
+            if z.get("type") == "functional":
+                svg_functional.append(zone_data)
+            elif z.get("type") == "wall":
+                svg_functional.append(zone_data)  # Paredes são renderizadas como áreas funcionais
+            else:
+                svg_sections.append(zone_data)
 
         def qty_color(qty: int) -> str:
             if qty <= 10:
@@ -184,10 +200,13 @@ def create_app() -> Flask:
             svg_width=svg_width,
             svg_height=svg_height,
             svg_zones=svg_zones,
+            svg_functional=svg_functional,
+            svg_sections=svg_sections,
             svg_items=svg_items,
             aisles=aisles,
             selected_col=selected_col,
             logo_url=logo_url,
+            walls_cfg=walls_cfg,
         )
 
     @app.get("/api/map")
@@ -276,16 +295,16 @@ def create_app() -> Flask:
     return app
 
 
+# Criar instância do app para produção (gunicorn)
+app = create_app()
+
 if __name__ == "__main__":
     print("Iniciando servidor...")
     print("Pasta atual:", BASE_DIR)
     print("Arquivo de dados:", DATA_FILE)
 
-    app = create_app()
-
     print("Servidor configurado!")
     print("Acesse: http://localhost:8080")
-    print("Celular: http://192.168.26.92:8080")
     print("Para parar: Ctrl+C")
     print("-" * 50)
     

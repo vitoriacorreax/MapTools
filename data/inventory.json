@@ -1,61 +1,376 @@
 {
-  "map": { "width": 20, "height": 15 },
-  "version": "2024-12-19-v4",
+  "map": { "width": 12, "height": 16 },
+  "version": "2025-01-planta-real-v2",
   "aisles": [
-    "Prateleira 1", "Prateleira 2", "Prateleira 3", "Prateleira 4", "Prateleira 5", "Prateleira 6",
-    "Prateleira 7", "Prateleira 8", "Prateleira 9", "Prateleira 10", "Prateleira 11", "Prateleira 12",
-    "Prateleira 13", "Prateleira 14", "Prateleira 15", "Prateleira 16", "Prateleira 17", "Prateleira 18",
-    "Prateleira 19", "Prateleira 20", "Prateleira 21", "Prateleira 22", "Prateleira 23", "Prateleira 24",
-    "Prateleira 25", "Prateleira 26", "Prateleira 27", "Prateleira 28"
+    "Seção 1", "Seção 2", "Seção 3", "Seção 4", "Seção 5", "Seção 6", "Seção 7",
+    "Seção 8", "Seção 9", "Seção 10", "Seção 11", "Seção 12", "Seção 13", "Seção 14",
+    "Seção 15", "Seção 16", "Seção 17", "Seção 18", "Seção 19", "Seção 20", "Seção 21",
+    "Seção 22", "Seção 23", "Seção 24", "Seção 25", "Seção 26", "Seção 27", "Seção 28"
   ],
   "zones": [
-    { "x": 0, "y": 0, "w": 5, "h": 4, "label": "ESTOQUE", "emoji": "📦", "fill": "#d1d5db" },
-    { "x": 0, "y": 4, "w": 5, "h": 1, "label": "BALCÃO", "emoji": "💼", "fill": "#d1d5db" },
-    { "x": 18, "y": 13, "w": 2, "h": 1, "label": "ENTRADA", "emoji": "🚪", "fill": "#22c55e" },
-    
-    { "x": 0, "y": 10, "w": 1, "h": 1, "label": "Prateleira 1", "emoji": "📚", "fill": "#ef4444" },
-    { "x": 1, "y": 10, "w": 1, "h": 1, "label": "Prateleira 2", "emoji": "📚", "fill": "#06b6d4" },
-    { "x": 2, "y": 10, "w": 1, "h": 1, "label": "Prateleira 3", "emoji": "📚", "fill": "#ef4444" },
-    { "x": 3, "y": 10, "w": 1, "h": 1, "label": "Prateleira 4", "emoji": "📚", "fill": "#8b5cf6" },
-    
-    { "x": 0, "y": 11, "w": 1, "h": 3, "label": "Prateleira 5", "emoji": "📚", "fill": "#06b6d4" },
-    { "x": 0, "y": 9, "w": 1, "h": 1, "label": "Prateleira 6", "emoji": "📚", "fill": "#facc15" },
-    { "x": 1, "y": 9, "w": 1, "h": 1, "label": "Prateleira 7", "emoji": "📚", "fill": "#ef4444" },
-    
-    { "x": 2, "y": 11, "w": 1, "h": 3, "label": "Prateleira 8", "emoji": "📚", "fill": "#22c55e" },
-    { "x": 2, "y": 9, "w": 1, "h": 1, "label": "Prateleira 9", "emoji": "📚", "fill": "#f97316" },
-    { "x": 2, "y": 8, "w": 1, "h": 1, "label": "Prateleira 10", "emoji": "📚", "fill": "#ef4444" },
-    
-    { "x": 3, "y": 11, "w": 1, "h": 3, "label": "Prateleira 11", "emoji": "📚", "fill": "#ef4444" },
-    { "x": 3, "y": 9, "w": 1, "h": 1, "label": "Prateleira 12", "emoji": "📚", "fill": "#22c55e" },
-    { "x": 3, "y": 8, "w": 1, "h": 1, "label": "Prateleira 13", "emoji": "📚", "fill": "#f97316" },
-    { "x": 3, "y": 7, "w": 1, "h": 1, "label": "Prateleira 14", "emoji": "📚", "fill": "#ef4444" },
-    
-    { "x": 4, "y": 11, "w": 1, "h": 3, "label": "Prateleira 15", "emoji": "📚", "fill": "#22c55e" },
-    { "x": 4, "y": 9, "w": 1, "h": 1, "label": "Prateleira 16", "emoji": "📚", "fill": "#facc15" },
-    { "x": 4, "y": 8, "w": 1, "h": 1, "label": "Prateleira 17", "emoji": "📚", "fill": "#06b6d4" },
-    
-    { "x": 5, "y": 10, "w": 2, "h": 1, "label": "Prateleira 18", "emoji": "📚", "fill": "#8b5cf6" },
-    { "x": 5, "y": 11, "w": 1, "h": 3, "label": "Prateleira 19", "emoji": "📚", "fill": "#06b6d4" },
-    { "x": 6, "y": 11, "w": 1, "h": 3, "label": "Prateleira 20", "emoji": "📚", "fill": "#06b6d4" },
-    
-    { "x": 7, "y": 11, "w": 1, "h": 1, "label": "Prateleira 21", "emoji": "📚", "fill": "#8b5cf6" },
-    { "x": 7, "y": 9, "w": 1, "h": 1, "label": "Prateleira 22", "emoji": "📚", "fill": "#22c55e" },
-    { "x": 7, "y": 8, "w": 1, "h": 1, "label": "Prateleira 23", "emoji": "📚", "fill": "#8b5cf6" },
-    { "x": 7, "y": 7, "w": 1, "h": 1, "label": "Prateleira 24", "emoji": "📚", "fill": "#ef4444" },
-    { "x": 7, "y": 6, "w": 1, "h": 1, "label": "Prateleira 25", "emoji": "📚", "fill": "#facc15" },
-    
-    { "x": 8, "y": 6, "w": 1, "h": 1, "label": "Prateleira 26", "emoji": "📚", "fill": "#f97316" },
-    { "x": 9, "y": 6, "w": 1, "h": 1, "label": "Prateleira 27", "emoji": "📚", "fill": "#ef4444" },
-    { "x": 8, "y": 7, "w": 1, "h": 2, "label": "Prateleira 28", "emoji": "📚", "fill": "#facc15" }
+    {
+      "x": 8,
+      "y": 7,
+      "w": 0.3,
+      "h": 7,
+      "label": "",
+      "fill": "#000000",
+      "type": "wall"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 4,
+      "h": 5,
+      "label": "ESTOQUE",
+      "fill": "#9ca3af",
+      "type": "functional"
+    },
+    {
+      "x": 0,
+      "y": 5,
+      "w": 4,
+      "h": 2,
+      "label": "BALCÃO",
+      "fill": "#9ca3af",
+      "type": "functional"
+    },
+    {
+      "x": 5,
+      "y": 15,
+      "w": 2,
+      "h": 1,
+      "label": "ENTRADA",
+      "fill": "#9ca3af",
+      "type": "functional"
+    },
+    {
+      "x": 7,
+      "y": 15,
+      "w": 1,
+      "h": 1,
+      "label": "1",
+      "fill": "#8b5cf6",
+      "type": "section"
+    },
+    {
+      "x": 4,
+      "y": 15,
+      "w": 1,
+      "h": 1,
+      "label": "2",
+      "fill": "#ef4444",
+      "type": "section"
+    },
+    {
+      "x": 3,
+      "y": 15,
+      "w": 1,
+      "h": 1,
+      "label": "3",
+      "fill": "#06b6d4",
+      "type": "section"
+    },
+    {
+      "x": 0,
+      "y": 13,
+      "w": 1,
+      "h": 2,
+      "label": "4",
+      "fill": "#ef4444",
+      "type": "section"
+    },
+    {
+      "x": 0,
+      "y": 10,
+      "w": 1,
+      "h": 3,
+      "label": "5",
+      "fill": "#06b6d4",
+      "type": "section"
+    },
+    {
+      "x": 0,
+      "y": 7,
+      "w": 1,
+      "h": 1,
+      "label": "6",
+      "fill": "#facc15",
+      "type": "section"
+    },
+    {
+      "x": 1,
+      "y": 7,
+      "w": 1,
+      "h": 2,
+      "label": "7",
+      "fill": "#ef4444",
+      "type": "section"
+    },
+    {
+      "x": 4,
+      "y": 13,
+      "w": 1,
+      "h": 2,
+      "label": "15",
+      "fill": "#22c55e",
+      "type": "section"
+    },
+    {
+      "x": 4,
+      "y": 10,
+      "w": 1,
+      "h": 3,
+      "label": "8",
+      "fill": "#22c55e",
+      "type": "section"
+    },
+    {
+      "x": 4,
+      "y": 7,
+      "w": 1,
+      "h": 3,
+      "label": "9",
+      "fill": "#fb923c",
+      "type": "section"
+    },
+    {
+      "x": 4,
+      "y": 6,
+      "w": 1,
+      "h": 1,
+      "label": "10",
+      "fill": "#ef4444",
+      "type": "section"
+    },
+    {
+      "x": 5,
+      "y": 13,
+      "w": 1,
+      "h": 2,
+      "label": "11",
+      "fill": "#ef4444",
+      "type": "section"
+    },
+    {
+      "x": 5,
+      "y": 10,
+      "w": 1,
+      "h": 3,
+      "label": "12",
+      "fill": "#22c55e",
+      "type": "section"
+    },
+    {
+      "x": 5,
+      "y": 7,
+      "w": 1,
+      "h": 3,
+      "label": "13",
+      "fill": "#fb923c",
+      "type": "section"
+    },
+    {
+      "x": 5,
+      "y": 6,
+      "w": 1,
+      "h": 1,
+      "label": "14",
+      "fill": "#ef4444",
+      "type": "section"
+    },
+    {
+      "x": 7,
+      "y": 11,
+      "w": 1,
+      "h": 3,
+      "label": "16",
+      "fill": "#facc15",
+      "type": "section"
+    },
+    {
+      "x": 7,
+      "y": 7,
+      "w": 1,
+      "h": 4,
+      "label": "17",
+      "fill": "#06b6d4",
+      "type": "section"
+    },
+    {
+      "x": 8.4,
+      "y": 7,
+      "w": 0.5,
+      "h": 6,
+      "label": "19",
+      "fill": "#06b6d4",
+      "type": "section"
+    },
+    {
+      "x": 9.1,
+      "y": 7,
+      "w": 0.5,
+      "h": 6,
+      "label": "20",
+      "fill": "#06b6d4",
+      "type": "section"
+    },
+    {
+      "x": 8.4,
+      "y": 13,
+      "w": 1.2,
+      "h": 1,
+      "label": "18",
+      "fill": "#8b5cf6",
+      "type": "section"
+    },
+    {
+      "x": 7,
+      "y": 4,
+      "w": 1,
+      "h": 1,
+      "label": "21",
+      "fill": "#8b5cf6",
+      "type": "section"
+    },
+    {
+      "x": 7,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "label": "22",
+      "fill": "#22c55e",
+      "type": "section"
+    },
+    {
+      "x": 7,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "label": "23",
+      "fill": "#8b5cf6",
+      "type": "section"
+    },
+    {
+      "x": 7,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "label": "24",
+      "fill": "#ef4444",
+      "type": "section"
+    },
+    {
+      "x": 7,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "label": "25",
+      "fill": "#facc15",
+      "type": "section"
+    },
+    {
+      "x": 5,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "label": "26",
+      "fill": "#fb923c",
+      "type": "section"
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "label": "27",
+      "fill": "#ef4444",
+      "type": "section"
+    },
+    {
+      "x": 4,
+      "y": 1,
+      "w": 1,
+      "h": 3,
+      "label": "28",
+      "fill": "#facc15",
+      "type": "section"
+    }
   ],
   "items": [
-    { "sku": "PARAF-04X30", "name": "Parafuso 4x30 mm", "category": "Parafusos", "description": "Parafuso aço zincado philips", "x": 0, "y": 10, "aisle": "Prateleira 1" },
-    { "sku": "BUCHA-06", "name": "Bucha 6 mm", "category": "Buchas", "description": "Bucha de nylon para alvenaria", "x": 1, "y": 10, "aisle": "Prateleira 2" },
-    { "sku": "MART-500G", "name": "Martelo 500 g", "category": "Ferramentas", "description": "Cabo de madeira", "x": 2, "y": 10, "aisle": "Prateleira 3" },
-    { "sku": "SERRA-TICO", "name": "Serra Tico-Tico", "category": "Elétricas", "description": "110V - com 2 lâminas", "x": 3, "y": 10, "aisle": "Prateleira 4" },
-    { "sku": "TIN-18MM", "name": "Trena 8 m", "category": "Medição", "description": "Trava automática", "x": 0, "y": 11, "aisle": "Prateleira 5" },
-    { "sku": "CHAVE-FENDAS", "name": "Jogo de Chaves de Fenda", "category": "Ferramentas", "description": "Jogo com 6 peças", "x": 0, "y": 9, "aisle": "Prateleira 6" },
-    { "sku": "FITA-ISOLANTE", "name": "Fita Isolante", "category": "Elétricas", "description": "Fita isolante preta", "x": 1, "y": 9, "aisle": "Prateleira 7" }
-  ]
+    {
+      "sku": "PARAF-04X30",
+      "name": "Parafuso 4x30 mm",
+      "category": "Parafusos",
+      "description": "Parafuso aço zincado philips",
+      "x": 7,
+      "y": 15,
+      "aisle": "Seção 1",
+      "qty": 50
+    },
+    {
+      "sku": "BUCHA-06",
+      "name": "Bucha 6 mm",
+      "category": "Buchas",
+      "description": "Bucha de nylon para alvenaria",
+      "x": 4,
+      "y": 15,
+      "aisle": "Seção 2",
+      "qty": 30
+    },
+    {
+      "sku": "MART-500G",
+      "name": "Martelo 500 g",
+      "category": "Ferramentas",
+      "description": "Cabo de madeira",
+      "x": 0,
+      "y": 13,
+      "aisle": "Seção 4",
+      "qty": 15
+    },
+    {
+      "sku": "SERRA-TICO",
+      "name": "Serra Tico-Tico",
+      "category": "Elétricas",
+      "description": "110V - com 2 lâminas",
+      "x": 4,
+      "y": 7,
+      "aisle": "Seção 9",
+      "qty": 8
+    },
+    {
+      "sku": "TIN-18MM",
+      "name": "Trena 8 m",
+      "category": "Medição",
+      "description": "Trava automática",
+      "x": 5,
+      "y": 10,
+      "aisle": "Seção 12",
+      "qty": 25
+    },
+    {
+      "sku": "CHAVE-FENDAS",
+      "name": "Jogo de Chaves de Fenda",
+      "category": "Ferramentas",
+      "description": "Jogo com 6 peças",
+      "x": 6,
+      "y": 12,
+      "aisle": "Seção 16",
+      "qty": 12
+    },
+    {
+      "sku": "FITA-ISOLANTE",
+      "name": "Fita Isolante",
+      "category": "Elétricas",
+      "description": "Fita isolante preta",
+      "x": 9,
+      "y": 10,
+      "aisle": "Seção 22",
+      "qty": 40
+    }
+  ],
+  "walls": {
+    "thickness": 6,
+    "color": "#000000"
+  }
 }
