@@ -12,7 +12,7 @@
       "x": 8,
       "y": 7,
       "w": 0.3,
-      "h": 7,
+      "h": 9,
       "label": "",
       "fill": "#000000",
       "type": "wall"
@@ -45,16 +45,16 @@
       "type": "functional"
     },
     {
-      "x": 7,
+      "x": 2.5,
       "y": 15,
-      "w": 1,
+      "w": 2,
       "h": 1,
       "label": "1",
       "fill": "#8b5cf6",
       "type": "section"
     },
     {
-      "x": 4,
+      "x": 2,
       "y": 15,
       "w": 1,
       "h": 1,
@@ -91,25 +91,25 @@
     },
     {
       "x": 0,
-      "y": 7,
+      "y": 8,
       "w": 1,
-      "h": 1,
+      "h": 2,
       "label": "6",
       "fill": "#facc15",
       "type": "section"
     },
     {
-      "x": 1,
+      "x": 0,
       "y": 7,
       "w": 1,
-      "h": 2,
+      "h": 1,
       "label": "7",
       "fill": "#ef4444",
       "type": "section"
     },
     {
-      "x": 4,
-      "y": 13,
+      "x": 2,
+      "y": 12,
       "w": 1,
       "h": 2,
       "label": "15",
@@ -117,26 +117,26 @@
       "type": "section"
     },
     {
-      "x": 4,
+      "x": 2,
       "y": 10,
       "w": 1,
-      "h": 3,
+      "h": 2,
       "label": "8",
       "fill": "#22c55e",
       "type": "section"
     },
     {
-      "x": 4,
-      "y": 7,
+      "x": 2,
+      "y": 8,
       "w": 1,
-      "h": 3,
+      "h": 2,
       "label": "9",
       "fill": "#fb923c",
       "type": "section"
     },
     {
-      "x": 4,
-      "y": 6,
+      "x": 2,
+      "y": 7.25,
       "w": 1,
       "h": 1,
       "label": "10",
@@ -144,8 +144,8 @@
       "type": "section"
     },
     {
-      "x": 5,
-      "y": 13,
+      "x": 4.5,
+      "y": 12.5,
       "w": 1,
       "h": 1,
       "label": "11",
@@ -153,8 +153,8 @@
       "type": "section"
     },
     {
-      "x": 5,
-      "y": 10,
+      "x": 4.5,
+      "y": 11.5,
       "w": 1,
       "h": 1,
       "label": "12",
@@ -162,17 +162,17 @@
       "type": "section"
     },
     {
-      "x": 5,
-      "y": 7,
+      "x": 4.5,
+      "y": 9.5,
       "w": 1,
-      "h": 3,
+      "h": 2,
       "label": "13",
       "fill": "#fb923c",
       "type": "section"
     },
     {
-      "x": 5,
-      "y": 6,
+      "x": 4.5,
+      "y": 8.5,
       "w": 1,
       "h": 1,
       "label": "14",
@@ -201,7 +201,7 @@
       "x": 8.4,
       "y": 7,
       "w": 0.5,
-      "h": 6,
+      "h": 8,
       "label": "19",
       "fill": "#06b6d4",
       "type": "section"
@@ -210,14 +210,14 @@
       "x": 9.1,
       "y": 7,
       "w": 0.5,
-      "h": 6,
+      "h": 8,
       "label": "20",
       "fill": "#06b6d4",
       "type": "section"
     },
     {
       "x": 8.4,
-      "y": 13,
+      "y": 15,
       "w": 1.2,
       "h": 1,
       "label": "18",
@@ -299,74 +299,564 @@
   ],
   "items": [
     {
-      "sku": "PARAF-04X30",
-      "name": "Parafuso 4x30 mm",
-      "category": "Parafusos",
-      "description": "Parafuso aço zincado philips",
-      "x": 7,
+      "sku": "ESTANTE-54-5",
+      "name": "ESTANTE MET.54/5 +GAV.PRATICA PRETA VOND",
+      "category": "Móveis",
+      "description": "Estante metálica com gaveta prática preta",
+      "x": 3,
       "y": 15,
       "aisle": "Seção 1",
-      "qty": 50
+      "qty": 1
     },
     {
-      "sku": "BUCHA-06",
-      "name": "Bucha 6 mm",
-      "category": "Buchas",
-      "description": "Bucha de nylon para alvenaria",
-      "x": 4,
+      "sku": "TOALHA-MESA",
+      "name": "TOALHA DE MESA",
+      "category": "Têxtil",
+      "description": "Toalha de mesa",
+      "x": 3.5,
+      "y": 15,
+      "aisle": "Seção 1",
+      "qty": 1
+    },
+    {
+      "sku": "GUARDA-CHUVA",
+      "name": "GUARDA CHUVA",
+      "category": "Utilidades",
+      "description": "Guarda chuva",
+      "x": 2,
       "y": 15,
       "aisle": "Seção 2",
-      "qty": 30
+      "qty": 1
     },
     {
-      "sku": "MART-500G",
-      "name": "Martelo 500 g",
-      "category": "Ferramentas",
-      "description": "Cabo de madeira",
+      "sku": "TELAS",
+      "name": "TELAS",
+      "category": "Construção",
+      "description": "Telas",
+      "x": 2.2,
+      "y": 15,
+      "aisle": "Seção 2",
+      "qty": 1
+    },
+    {
+      "sku": "TAPETES",
+      "name": "TAPETES",
+      "category": "Têxtil",
+      "description": "Tapetes",
+      "x": 2.4,
+      "y": 15,
+      "aisle": "Seção 2",
+      "qty": 1
+    },
+    {
+      "sku": "BASE-COPO-BAIXO",
+      "name": "BASE COPO BAIXO P/RELE FOTOEL. PP EXATRO",
+      "category": "Elétrica",
+      "description": "Base copo baixo para relé fotoelétrico",
+      "x": 0.1,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "CABO-REDE-10MT",
+      "name": "CABO REDE/CFTV LAN AZUL CAT5E 10MT C/PLUG RJ45 SANTANA",
+      "category": "Elétrica",
+      "description": "Cabo rede LAN CAT5E 10 metros",
+      "x": 0.2,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "CABO-REDE-2MT",
+      "name": "CABO REDE/CFTV LAN AZUL CAT5E 2MT C/PLUG RJ45 SANTANA",
+      "category": "Elétrica",
+      "description": "Cabo rede LAN CAT5E 2 metros",
+      "x": 0.3,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "CABO-REDE-5MT",
+      "name": "CABO REDE/CFTV LAN AZUL CAT5E 5MT C/PLUG RJ45 SANTANA",
+      "category": "Elétrica",
+      "description": "Cabo rede LAN CAT5E 5 metros",
+      "x": 0.4,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "EXTENSAO",
+      "name": "EXTENSÃO",
+      "category": "Elétrica",
+      "description": "Extensão",
+      "x": 0.5,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "EXTENSAO-5MT",
+      "name": "EXTENSÃO 5 MT",
+      "category": "Elétrica",
+      "description": "Extensão 5 metros",
+      "x": 0.6,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "EXTENSAO-CURTA-1-2",
+      "name": "EXTENSAO CURTA 1/2 CROMADA BOGNAR",
+      "category": "Elétrica",
+      "description": "Extensão curta 1/2 cromada",
+      "x": 0.7,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "EXTENSAO-PARALELO-10M",
+      "name": "EXTENSAO PARALELO 2X0,75 10M MEGATRON",
+      "category": "Elétrica",
+      "description": "Extensão paralelo 2x0,75 10 metros",
+      "x": 0.8,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "EXTENSAO-PARALELO-3M",
+      "name": "EXTENSAO PARALELO 2X0,75 3M MEGATRON",
+      "category": "Elétrica",
+      "description": "Extensão paralelo 2x0,75 3 metros",
+      "x": 0.9,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "EXTENSAO-PARALELO-5M",
+      "name": "EXTENSAO PARALELO 2X0,75 5M MEGATRON",
+      "category": "Elétrica",
+      "description": "Extensão paralelo 2x0,75 5 metros",
+      "x": 1.0,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "EXTENSAO-TRIPLA-3M",
+      "name": "EXTENSAO TRIPLA 3M 2P 10A BRANCA ILUMI",
+      "category": "Elétrica",
+      "description": "Extensão tripla 3 metros",
+      "x": 1.1,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "EXTENSAO-TRIPLA-4-5M",
+      "name": "EXTENSAO TRIPLA 4,5M 2P 10A BR ECO ILUMI",
+      "category": "Elétrica",
+      "description": "Extensão tripla 4,5 metros",
+      "x": 1.2,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "EXTENSAO-TRIPLA-5M",
+      "name": "EXTENSAO TRIPLA 5M 2P 10A BRANCA ILUMI",
+      "category": "Elétrica",
+      "description": "Extensão tripla 5 metros",
+      "x": 1.3,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "FILTRO-LINHA-4-TOMADAS",
+      "name": "FILTRO DE LINHA 4 TOMADAS - 1M MEGATRON",
+      "category": "Elétrica",
+      "description": "Filtro de linha 4 tomadas 1 metro",
+      "x": 1.4,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "FILTRO-LINHA-5-TOMADAS-MEG",
+      "name": "FILTRO DE LINHA 5 TOMADAS - 1M MEGATRON",
+      "category": "Elétrica",
+      "description": "Filtro de linha 5 tomadas 1 metro",
+      "x": 1.5,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "FILTRO-LINHA-5-TOMADAS-ILUMI",
+      "name": "FILTRO DE LINHA 5 TOMADAS BR - 1M ILUMI",
+      "category": "Elétrica",
+      "description": "Filtro de linha 5 tomadas branco 1 metro",
+      "x": 1.6,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "FILTRO-LUZ-RETANGULAR",
+      "name": "FILTRO DE LUZ RETANGLAR TON 10",
+      "category": "Elétrica",
+      "description": "Filtro de luz retangular",
+      "x": 1.7,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "FOTOCELULA-TRIFACIL",
+      "name": "FOTOCELULA TRIFACIL 220V EXATRON",
+      "category": "Elétrica",
+      "description": "Fotocélula trifásica 220V",
+      "x": 1.8,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "FOTOSOQUETE-MICROCONTROL",
+      "name": "FOTOSOQUETE MICROCONTROL.BIVOLT SX-C EXA",
+      "category": "Elétrica",
+      "description": "Fotosoquete microcontrolado bivolt",
+      "x": 1.9,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "FOTOSQUETE",
+      "name": "FOTOSQUETE",
+      "category": "Elétrica",
+      "description": "Fotosoquete",
+      "x": 1.95,
+      "y": 15,
+      "aisle": "Seção 3",
+      "qty": 1
+    },
+    {
+      "sku": "ARIA-CJ-2-INT-SIMPLES-TOMADA-10A",
+      "name": "ARIA CJ 2 INTERRUP. SIMPLES + TOMADA 10A",
+      "category": "Elétrica",
+      "description": "Aria caixa 2 interruptor simples + tomada 10A",
       "x": 0,
       "y": 13,
       "aisle": "Seção 4",
-      "qty": 15
+      "qty": 1
     },
     {
-      "sku": "SERRA-TICO",
-      "name": "Serra Tico-Tico",
-      "category": "Elétricas",
-      "description": "110V - com 2 lâminas",
-      "x": 4,
-      "y": 7,
-      "aisle": "Seção 9",
-      "qty": 8
+      "sku": "ARIA-CJ-2-INT-SIMPLES-6A",
+      "name": "ARIA CJ 2 INTERRUP. SIMPLES 6A",
+      "category": "Elétrica",
+      "description": "Aria caixa 2 interruptor simples 6A",
+      "x": 0.1,
+      "y": 13,
+      "aisle": "Seção 4",
+      "qty": 1
     },
     {
-      "sku": "TIN-18MM",
-      "name": "Trena 8 m",
-      "category": "Medição",
-      "description": "Trava automática",
-      "x": 5,
-      "y": 10,
-      "aisle": "Seção 12",
-      "qty": 25
+      "sku": "ARIA-CJ-2-TOMADA-3P-10A",
+      "name": "ARIA CJ 2 TOMADA 3P 10A",
+      "category": "Elétrica",
+      "description": "Aria caixa 2 tomada 3P 10A",
+      "x": 0.2,
+      "y": 13,
+      "aisle": "Seção 4",
+      "qty": 1
     },
     {
-      "sku": "CHAVE-FENDAS",
-      "name": "Jogo de Chaves de Fenda",
-      "category": "Ferramentas",
-      "description": "Jogo com 6 peças",
-      "x": 6,
-      "y": 12,
-      "aisle": "Seção 16",
-      "qty": 12
+      "sku": "ARIA-CJ-2-TOMADA-3P-20A",
+      "name": "ARIA CJ 2 TOMADA 3P 20A",
+      "category": "Elétrica",
+      "description": "Aria caixa 2 tomada 3P 20A",
+      "x": 0.3,
+      "y": 13,
+      "aisle": "Seção 4",
+      "qty": 1
     },
     {
-      "sku": "FITA-ISOLANTE",
-      "name": "Fita Isolante",
-      "category": "Elétricas",
-      "description": "Fita isolante preta",
-      "x": 9,
-      "y": 10,
-      "aisle": "Seção 22",
-      "qty": 40
+      "sku": "ARIA-CJ-INT-CAMPAINHA",
+      "name": "ARIA CJ INTERRUP. P/CAMPAINHA",
+      "category": "Elétrica",
+      "description": "Aria caixa interruptor para campainha",
+      "x": 0.4,
+      "y": 13,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "ARIA-CJ-INT-PARALELO-6A",
+      "name": "ARIA CJ INTERRUP. PARALELO 6A",
+      "category": "Elétrica",
+      "description": "Aria caixa interruptor paralelo 6A",
+      "x": 0.5,
+      "y": 13,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "ARIA-CJ-INT-SIMPLES-TOMADA-10A",
+      "name": "ARIA CJ INTERRUP. SIMPLES + TOMADA 10A",
+      "category": "Elétrica",
+      "description": "Aria caixa interruptor simples + tomada 10A",
+      "x": 0.6,
+      "y": 13,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "ARIA-CJ-INT-SIMPLES-TOMADA-20A",
+      "name": "ARIA CJ INTERRUP. SIMPLES + TOMADA 20A",
+      "category": "Elétrica",
+      "description": "Aria caixa interruptor simples + tomada 20A",
+      "x": 0.7,
+      "y": 13,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "ARIA-CJ-INT-SIMPLES-6A",
+      "name": "ARIA CJ INTERRUP. SIMPLES 6A",
+      "category": "Elétrica",
+      "description": "Aria caixa interruptor simples 6A",
+      "x": 0.8,
+      "y": 13,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "ARIA-CJ-TOMADA-3P-10A",
+      "name": "ARIA CJ TOMADA 3P 10A",
+      "category": "Elétrica",
+      "description": "Aria caixa tomada 3P 10A",
+      "x": 0.9,
+      "y": 13,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "ARIA-CJ-TOMADA-3P-20A",
+      "name": "ARIA CJ TOMADA 3P 20A",
+      "category": "Elétrica",
+      "description": "Aria caixa tomada 3P 20A",
+      "x": 0,
+      "y": 14,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "ARIA-ESPELHO-CEGO-4X2",
+      "name": "ARIA ESPELHO CEGO 4X2",
+      "category": "Elétrica",
+      "description": "Aria espelho cego 4x2",
+      "x": 0.1,
+      "y": 14,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "ARIA-MODULO-TOMADA-10A",
+      "name": "ARIA MODULO TOMADA 10A",
+      "category": "Elétrica",
+      "description": "Aria módulo tomada 10A",
+      "x": 0.2,
+      "y": 14,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "ARIA-MODULO-TOMADA-20A",
+      "name": "ARIA MODULO TOMADA 20A",
+      "category": "Elétrica",
+      "description": "Aria módulo tomada 20A",
+      "x": 0.3,
+      "y": 14,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "ARIA-MODULO-TOMADA-20A-VERMELHA",
+      "name": "ARIA MODULO TOMADA 20A VERMELHA",
+      "category": "Elétrica",
+      "description": "Aria módulo tomada 20A vermelha",
+      "x": 0.4,
+      "y": 14,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "CAMPAINHA-ELETRONICA-S-FIO",
+      "name": "CAMPAINHA ELETRONICA S/FIO FOXLUX",
+      "category": "Elétrica",
+      "description": "Campainha eletrônica sem fio",
+      "x": 0.5,
+      "y": 14,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "CIGARRA-INTERNA",
+      "name": "CIGARRA INTERNA",
+      "category": "Elétrica",
+      "description": "Cigarra interna",
+      "x": 0.6,
+      "y": 14,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "CJ2-TOMADAS-2P-T-20A",
+      "name": "CJ2 TOMADAS 2P+T 20A",
+      "category": "Elétrica",
+      "description": "Caixa 2 tomadas 2P+T 20A",
+      "x": 0.7,
+      "y": 14,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "INTERRUPITOR-SIMPLES-ILUMI",
+      "name": "INTERRUPITOR SIMPLES ILUMI",
+      "category": "Elétrica",
+      "description": "Interruptor simples Ilumi",
+      "x": 0.8,
+      "y": 14,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "INTERRUPTOR-SOBREPOR-ANTIGO",
+      "name": "INTERRUPTOR DE SOBREPOR ANTIGO",
+      "category": "Elétrica",
+      "description": "Interruptor de sobrepor antigo",
+      "x": 0.9,
+      "y": 14,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "LINHA-BOX-CJ-2-TOMADA-3P-10A",
+      "name": "LINHA BOX CJ 2 TOMADA 3P 10A",
+      "category": "Elétrica",
+      "description": "Linha Box caixa 2 tomada 3P 10A",
+      "x": 0,
+      "y": 13.5,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "LINHA-BOX-CJ-INT-PARALELO",
+      "name": "LINHA BOX CJ INTERRUP. PARALELO",
+      "category": "Elétrica",
+      "description": "Linha Box caixa interruptor paralelo",
+      "x": 0.1,
+      "y": 13.5,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "LINHA-BOX-CJ-INT-SIMPLES",
+      "name": "LINHA BOX CJ INTERRUP. SIMPLES",
+      "category": "Elétrica",
+      "description": "Linha Box caixa interruptor simples",
+      "x": 0.2,
+      "y": 13.5,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "LINHA-BOX-CJ-INT-SIMPLES-TOM-10A",
+      "name": "LINHA BOX CJ INTERRUP. SIMPLES+TOM 10A",
+      "category": "Elétrica",
+      "description": "Linha Box caixa interruptor simples + tomada 10A",
+      "x": 0.3,
+      "y": 13.5,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "LINHA-BOX-CJ-TOMADA-3P-10A",
+      "name": "LINHA BOX CJ TOMADA 3P 10A",
+      "category": "Elétrica",
+      "description": "Linha Box caixa tomada 3P 10A",
+      "x": 0.4,
+      "y": 13.5,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "LINHA-BOX-CJ-TOMADA-3P-20A",
+      "name": "LINHA BOX CJ TOMADA 3P 20A",
+      "category": "Elétrica",
+      "description": "Linha Box caixa tomada 3P 20A",
+      "x": 0.5,
+      "y": 13.5,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "LINHA-PESCA-NYLON",
+      "name": "LINHA DE PESCA/NYLON",
+      "category": "Utilidades",
+      "description": "Linha de pesca/nylon",
+      "x": 0.6,
+      "y": 13.5,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "LIZ-ESPELHO-4X2-03-MODULO",
+      "name": "LIZ ESPELHO 4X2 03 MODULO",
+      "category": "Elétrica",
+      "description": "Liz espelho 4x2 03 módulo",
+      "x": 0.7,
+      "y": 13.5,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "LIZ-ESPELHO-CEGO-4X2",
+      "name": "LIZ ESPELHO CEGO 4X2",
+      "category": "Elétrica",
+      "description": "Liz espelho cego 4x2",
+      "x": 0.8,
+      "y": 13.5,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "MEC-SIST-X-CAIXA-4X2",
+      "name": "MEC SIST.X CAIXA 4X2 / 175X75X42 BRANCA",
+      "category": "Elétrica",
+      "description": "Mec sistema caixa 4x2 branca",
+      "x": 0.9,
+      "y": 13.5,
+      "aisle": "Seção 4",
+      "qty": 1
+    },
+    {
+      "sku": "MEC-SIST-X-CJ-INT-CAMPAINHA",
+      "name": "MEC SIST.X CJ INTERRUP. P/CAMPAINHA",
+      "category": "Elétrica",
+      "description": "Mec sistema caixa interruptor para campainha",
+      "x": 0.5,
+      "y": 13.7,
+      "aisle": "Seção 4",
+      "qty": 1
     }
   ],
   "walls": {

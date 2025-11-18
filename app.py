@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -43,10 +44,13 @@ def create_app() -> Flask:
             cell_px = 50  # Tamanho padrão menor para melhor visualização no mobile
         # Coluna selecionada (para filtrar por coluna ao clicar no mapa)
         selected_col_raw = request.args.get("col")
+        selected_row_raw = request.args.get("row")
         try:
-            selected_col = int(selected_col_raw) if selected_col_raw is not None else None
-        except ValueError:
+            selected_col = float(selected_col_raw) if selected_col_raw is not None else None
+            selected_row = float(selected_row_raw) if selected_row_raw is not None else None
+        except (ValueError, TypeError):
             selected_col = None
+            selected_row = None
 
         map_cfg: Dict[str, Any] = inventory.get("map", {"width": 10, "height": 6})
         all_items: List[Dict[str, Any]] = inventory.get("items", [])
@@ -74,7 +78,24 @@ def create_app() -> Flask:
 
         filtered_items = [it for it in all_items if matches(it)]
         if selected_col is not None:
-            filtered_items = [it for it in filtered_items if int(it.get("x", -1)) == selected_col]
+            # Quando clica em "ir no mapa", selected_col é a coordenada x do item
+            # Se há uma busca ativa, mostrar apenas os itens da busca naquela coluna
+            # Se não há busca, mostrar apenas o item específico daquela coordenada (x, y)
+            if query:
+                # Com busca: mostrar apenas itens da busca naquela coluna
+                filtered_items = [it for it in filtered_items if abs(float(it.get("x", -1)) - selected_col) < 0.5]
+            else:
+                # Sem busca: mostrar apenas o item específico daquela coordenada
+                if selected_row is not None:
+                    # Se temos x e y, mostrar apenas o item exato
+                    filtered_items = [
+                        it for it in filtered_items 
+                        if abs(float(it.get("x", -1)) - selected_col) < 0.1 
+                        and abs(float(it.get("y", -1)) - selected_row) < 0.1
+                    ]
+                else:
+                    # Se só temos x, mostrar apenas itens exatos daquela coluna (tolerância menor)
+                    filtered_items = [it for it in filtered_items if abs(float(it.get("x", -1)) - selected_col) < 0.1]
 
         # Descobrir o corredor de um item: usa item["aisle"] se existir;
         # caso contrário, tenta inferir pela zona (se x,y estiverem dentro de uma zona)
@@ -164,12 +185,29 @@ def create_app() -> Flask:
                 return "#f59e0b"  # amarelo
             return "#22c55e"      # verde
 
-        svg_items: List[Dict[str, Any]] = []
+        # Agrupar itens na mesma posição exata para mostrar apenas uma bolinha
+        # Isso evita múltiplas bolinhas sobrepostas para variações do mesmo produto
+        grouped_items: Dict[tuple, Dict[str, Any]] = {}
         for it in filtered_items:
-            gx = int(it.get("x", 0))
-            gy = int(it.get("y", 0))
-            cx = cell_to_px(gx) + cell_px // 2
-            cy = cell_to_px(gy) + cell_px // 2
+            gx = float(it.get("x", 0))
+            gy = float(it.get("y", 0))
+            # Agrupar apenas itens na mesma posição exata (arredondada para 0.05)
+            # Isso agrupa variações do mesmo produto na mesma posição
+            pos_key = (round(gx * 20) / 20, round(gy * 20) / 20)
+            
+            # Se já existe um item nesta posição exata, manter o primeiro encontrado
+            if pos_key not in grouped_items:
+                grouped_items[pos_key] = it
+        
+        svg_items: List[Dict[str, Any]] = []
+        for it in grouped_items.values():
+            gx = float(it.get("x", 0))
+            gy = float(it.get("y", 0))
+            # Posicionar a bolinha no canto superior direito da célula para não sobrepor o número
+            offset_x = cell_px * 0.35  # Offset para o canto direito
+            offset_y = cell_px * 0.25  # Offset para o topo
+            cx = cell_to_px(gx) + offset_x
+            cy = cell_to_px(gy) + offset_y
             svg_items.append(
                 {
                     "cx": cx,
@@ -178,8 +216,8 @@ def create_app() -> Flask:
                     "qty": int(it.get("qty", 0)),
                     "fill": qty_color(int(it.get("qty", 0))),
                     "label": it.get("name", ""),
-                    "gx": gx,
-                    "gy": gy,
+                    "gx": int(gx),
+                    "gy": int(gy),
                 }
             )
 
@@ -205,6 +243,7 @@ def create_app() -> Flask:
             svg_items=svg_items,
             aisles=aisles,
             selected_col=selected_col,
+            selected_row=selected_row,
             logo_url=logo_url,
             walls_cfg=walls_cfg,
         )

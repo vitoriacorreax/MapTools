@@ -224,13 +224,13 @@
   <body>
     <div class="topbar">
       <div class="topbar-header">
-        {% if logo_url %}
+          {% if logo_url %}
           <div class="logo">
             <img src="{{ logo_url }}" alt="Logo" />
           </div>
-        {% else %}
+          {% else %}
           <div class="logo">FF</div>
-        {% endif %}
+          {% endif %}
         <div class="topbar-title">
           <div>Ferragem Fênix</div>
           <div class="topbar-subtitle">Aberta todos os dias • Sempre aberta ao meio‑dia</div>
@@ -240,7 +240,7 @@
         <input name="q" value="{{ query }}" placeholder="Buscar produtos..." />
         <button type="submit">Buscar</button>
         <a href="/" class="secondary">Limpar</a>
-      </form>
+           </form>
     </div>
 
 
@@ -249,7 +249,7 @@
         <div class="map-title">Mapa da Loja</div>
         <div class="map-info">
           <strong>📍 Orientação:</strong> Áreas cinza = <strong>ESTOQUE/BALCÃO/ENTRADA</strong> | Números coloridos = <strong>SEÇÕES</strong> | Clique para ver produtos
-        </div>
+      </div>
 
         {% if view_mode=='map' %}
         <div class="map-container">
@@ -315,7 +315,8 @@
             </a>
             {% endfor %}
             
-            <!-- PRODUTOS (PONTOS NO MAPA) -->
+            <!-- PRODUTOS (PONTOS NO MAPA) - APENAS QUANDO HOUVER BUSCA OU SELEÇÃO -->
+            {% if svg_items|length > 0 and (query or selected_col is not none) %}
             {% for it in svg_items %}
             <circle 
               cx="{{ it.cx }}" 
@@ -327,21 +328,22 @@
               style="pointer-events: none;"
             />
             {% endfor %}
+            {% endif %}
           </svg>
         </div>
         {% else %}
-        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
-          {% for it in items %}
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+            {% for it in items %}
           <li class="result-item">
-            <div>
+              <div>
               <strong>{{ it.name }}</strong>
               <div style="margin-top:4px;"><small>SKU {{ it.sku }} • {{ it.category }}</small></div>
               <div><small>Seção: <strong>{{ it.aisle_display }}</strong></small></div>
-            </div>
-            <a href="/?q={{ query }}&cat={{ active_category }}&view={{ view_mode }}&cell={{ cell_px }}&col={{ it.x }}#map-top">Ir no mapa</a>
-          </li>
-          {% endfor %}
-        </ul>
+              </div>
+            <a href="/?q={{ query }}&cat={{ active_category }}&view={{ view_mode }}&cell={{ cell_px }}&col={{ it.x }}&row={{ it.y }}#map-top">Ir no mapa</a>
+            </li>
+            {% endfor %}
+          </ul>
         {% endif %}
       </section>
 
@@ -358,8 +360,8 @@
                 <div style="margin-top:4px;"><small>SKU {{ it.sku }} • {{ it.category }}</small></div>
                 <div><small>Seção: <strong>{{ it.aisle_display }}</strong></small></div>
               </div>
-              <a href="/?q={{ query }}&cat={{ active_category }}&view={{ view_mode }}&cell={{ cell_px }}&col={{ it.x }}#map-top">Ir no mapa</a>
-            </div>
+              <a href="/?q={{ query }}&cat={{ active_category }}&view={{ view_mode }}&cell={{ cell_px }}&col={{ it.x }}&row={{ it.y }}#map-top">Ir no mapa</a>
+              </div>
             {% endfor %}
           </div>
         {% endif %}
@@ -370,4 +372,4 @@
       <small>Mapa Virtual Interativo - Ferragem Fênix</small>
     </div>
   </body>
-</html>
+  </html>
