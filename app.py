@@ -185,29 +185,85 @@ def create_app() -> Flask:
                 return "#f59e0b"  # amarelo
             return "#22c55e"      # verde
 
-        # Agrupar itens na mesma posição exata para mostrar apenas uma bolinha
-        # Isso evita múltiplas bolinhas sobrepostas para variações do mesmo produto
-        grouped_items: Dict[tuple, Dict[str, Any]] = {}
+        # Agrupar itens para mostrar apenas uma bolinha
+        # Se há busca: agrupar por nome do produto (normalizado) - uma bolinha por produto único
+        # Se não há busca: agrupar por posição exata - uma bolinha por posição
+        def normalize_product_name(name: str) -> str:
+            """Normaliza o nome do produto para agrupamento"""
+            if not name:
+                return ""
+            # Remove espaços extras, converte para minúsculas, remove acentos e caracteres especiais
+            import re
+            normalized = re.sub(r'\s+', ' ', str(name).strip().lower())
+            # Remove caracteres especiais comuns que podem variar
+            normalized = re.sub(r'[^\w\s]', '', normalized)
+            # Remove espaços no início e fim novamente
+            normalized = normalized.strip()
+            return normalized
+        
+        grouped_items: Dict[str, Dict[str, Any]] = {}
         for it in filtered_items:
             gx = float(it.get("x", 0))
             gy = float(it.get("y", 0))
-            # Agrupar apenas itens na mesma posição exata (arredondada para 0.05)
-            # Isso agrupa variações do mesmo produto na mesma posição
-            pos_key = (round(gx * 20) / 20, round(gy * 20) / 20)
             
-            # Se já existe um item nesta posição exata, manter o primeiro encontrado
-            if pos_key not in grouped_items:
-                grouped_items[pos_key] = it
+            if query:
+                # Com busca: agrupar pelo termo de busca (query)
+                # Assim, todos os produtos que contêm o termo pesquisado mostram apenas uma bolinha
+                # Independente de quantos produtos diferentes contenham o termo
+                group_key = f"search_{query}"
+            else:
+                # Sem busca: agrupar por posição exata (arredondada para 0.05)
+                # Isso agrupa variações do mesmo produto na mesma posição
+                group_key = f"pos_{round(gx * 20) / 20}_{round(gy * 20) / 20}"
+            
+            # Se já existe um item com esta chave, manter o primeiro encontrado
+            # Isso garante que apenas uma bolinha apareça por produto único
+            if group_key not in grouped_items:
+                grouped_items[group_key] = it
         
         svg_items: List[Dict[str, Any]] = []
         for it in grouped_items.values():
             gx = float(it.get("x", 0))
             gy = float(it.get("y", 0))
-            # Posicionar a bolinha no canto superior direito da célula para não sobrepor o número
-            offset_x = cell_px * 0.35  # Offset para o canto direito
-            offset_y = cell_px * 0.25  # Offset para o topo
-            cx = cell_to_px(gx) + offset_x
-            cy = cell_to_px(gy) + offset_y
+            
+            # Encontrar a seção (prateleira) onde o item está localizado
+            # Usar os valores já convertidos para pixels das zonas SVG para garantir posicionamento exato
+            cx = cell_to_px(gx + 0.5)  # Centro da célula em x (fallback)
+            cy = cell_to_px(gy + 0.5)  # Centro da célula em y (fallback)
+            
+            # Procurar a zona/seção que contém este item
+            # Primeiro, encontrar a zona original que contém o item (pode ser section ou functional)
+            matching_zone = None
+            for z in zones:
+                zx = float(z.get("x", 0))
+                zy = float(z.get("y", 0))
+                zw = float(z.get("w", 1))
+                zh = float(z.get("h", 1))
+                # Verificar se o item está dentro desta zona (incluindo limites)
+                # Verificar tanto seções quanto zonas funcionais
+                if (z.get("type") in ["section", "functional"]) and (zx <= gx <= zx + zw and zy <= gy <= zy + zh):
+                    matching_zone = z
+                    break
+            
+            # Se encontrou a zona, buscar a zona SVG correspondente
+            if matching_zone:
+                zx = float(matching_zone.get("x", 0))
+                zy = float(matching_zone.get("y", 0))
+                z_label = str(matching_zone.get("label", ""))
+                z_type = matching_zone.get("type", "")
+                
+                # Buscar na lista apropriada (svg_sections ou svg_functional)
+                svg_list = svg_sections if z_type == "section" else svg_functional
+                
+                # Buscar a zona SVG correspondente usando coordenadas e label para garantir correspondência única
+                for svg_z in svg_list:
+                    # Verificar se é a mesma zona usando coordenadas e label
+                    if (abs(svg_z.get("col", -1) - zx) < 0.01 and 
+                        svg_z.get("label", "") == z_label):
+                        # Usar os valores já convertidos para pixels (mesma fórmula do template: x + w/2, y + h/2)
+                        cx = svg_z.get("x", 0) + (svg_z.get("w", 0) / 2)
+                        cy = svg_z.get("y", 0) + (svg_z.get("h", 0) / 2)
+                        break
             svg_items.append(
                 {
                     "cx": cx,
